@@ -36,7 +36,7 @@ This is the demo front end to showcase some of the functionalities.
 Given the fictional brief, I used the existing Aus-post Postcode checker as my design inspiration.
 
 <div align="center">
-  <img src="./planning/aus-post-inspiration.png" alt="Aus-post home page">
+  <img src="./planning /aus-post-inspiration.png" alt="Aus-post home page">
 </div>
 
 ## Key Features
