@@ -1,6 +1,6 @@
-# Welcome to PostChecker-API
+# Welcome to PostChecker-API-Front 
 
-A Spring Boot backend powered by SQLite with a TypeScript React frontend demo.
+The front end demo for my PostChecker-API backend in Springboot and/or Flask.
 
 <div align="center">
   <img src="./public/postcheckAPI.gif" alt="Homepage">
