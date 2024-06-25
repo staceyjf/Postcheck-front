@@ -70,7 +70,7 @@ function App() {
                   width="100%"
                 >
                   <Routes>
-                    <Route path="" element={<IndexPage />} />
+                    <Route path="/" element={<IndexPage />} />
                     <Route
                       path="/postcodes/create"
                       element={<CreateUpdatePage mode="Create" />}
