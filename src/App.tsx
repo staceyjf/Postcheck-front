@@ -57,7 +57,7 @@ function App() {
             }}
           >
             <UserContextProvider>
-              <BrowserRouter>
+              <BrowserRouter basename="/Postcheck-front">
                 <Navbar />
                 <Box
                   flexGrow={1}
