@@ -8,7 +8,7 @@ const LoginContainer = () => {
   const { user, userSignIn } = useContext(UserContext);
 
   const onSubmit = (username: string, password: string) => {
-    userSignIn(username, password).catch((e: any) => {
+    userSignIn(username, password).catch((e: unknown) => {
       setError(new Error("Failed to sign in. Please try again."));
       console.error("ERROR: " + e);
     });

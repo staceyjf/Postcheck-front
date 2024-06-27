@@ -26,7 +26,7 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
   >();
   const [suburbs, setSuburbs] = useState<SuburbResponse[]>([]);
   const [error, setError] = useState<Error | null>(null);
-  const [fetchStatus, setFetchStatus] = useState<String>("LOADING");
+  const [fetchStatus, setFetchStatus] = useState<string>("LOADING");
   const [open, setOpen] = useState(false);
 
   // helper error to reduce code in the useEffect
@@ -98,7 +98,7 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
         setFetchStatus("FAILED");
       }
       updatePostCodeById(Id, data)
-        .then((_data) => {
+        .then(() => {
           navigate("/");
           setError(null);
         })
@@ -112,7 +112,7 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
         });
     } else {
       createPostCode(data)
-        .then((_data) => {
+        .then(() => {
           navigate("/");
           setError(null);
         })

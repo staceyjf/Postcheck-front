@@ -75,6 +75,7 @@ Date: 27/06/24
 Updates: 
 
 1. Deployment: Successful deployed with GH pages.
+2. Linting: Amends to adhere to configured linting rules.
 
 ## Screenshots
 

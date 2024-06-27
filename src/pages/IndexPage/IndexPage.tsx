@@ -29,30 +29,33 @@ const IndexPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [postcodeId, setPostcodeId] = useState<number | undefined>(undefined);
 
+  type SearchFunctionType = (searchTerm: string) => Promise<PostCodeResponse[]>;
+
+
   const fetchAllpostcodes = () => {
     getAllPostCodes()
       .then((data) => {
         setPostcodes(data);
         setFetchStatus("SUCCESS");
       })
-      .catch((e: any) => {
+      .catch((e: unknown) => {
         setError(new Error("Failed to fetch postcodes. Please try again."));
         setFetchStatus("FAILED");
         console.error("ERROR: " + e);
       });
   };
 
-  const handleSearch = (searchFunction: Function, searchTerm: string) => {
+  const handleSearch = (searchFunction: SearchFunctionType, searchTerm: string) => {
     setShowResults(true);
     searchFunction(searchTerm)
-      .then((data: any) => {
+      .then((data: PostCodeResponse[]) => {
         setPostcodes(data);
         setFetchStatus("SUCCESS");
         if (data.length === 0) {
           setShowResults(false);
         }
       })
-      .catch((e: any) => {
+      .catch((e: unknown) => {
         setError(new Error("Failed to fetch postcodes. Please try again."));
         setFetchStatus("FAILED");
         console.error("ERROR: " + e);
@@ -65,11 +68,11 @@ const IndexPage = () => {
   }, []);
 
   useEffect(() => {
-    if (searchTerm && searchTerm.match(/\d+/)) {
+    if (searchTerm && searchTerm.match(/\d+/)) { // for postcodes
       handleSearch(findSuburbsByPostCode, searchTerm);
     } else if (searchTerm) {
-      handleSearch(findPostCodesBySuburb, searchTerm.toLowerCase());
-    } else if (!searchTerm) {
+      handleSearch(findPostCodesBySuburb, searchTerm.toLowerCase()); // for suburbs
+    } else if (!searchTerm) { // to get all
       setShowResults(true);
       fetchAllpostcodes();
     }
@@ -85,7 +88,7 @@ const IndexPage = () => {
       await deleteById(id);
       setPostcodes(postcodes.filter((item) => item.id !== id));
       setOpenModal(false);
-    } catch (e: any) {
+    } catch (e: unknown) {
       setError(new Error("Failed to delete postcode. Please try again."));
       setFetchStatus("FAILED");
       console.error(e);

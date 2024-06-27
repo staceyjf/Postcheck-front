@@ -19,7 +19,7 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
   const Id = Number(idParam);
   const [defaultValues, setDefaultValues] = useState<SuburbForm | undefined>();
   const [error, setError] = useState<Error | null>(null);
-  const [fetchStatus, setFetchStatus] = useState<String>("LOADING");
+  const [fetchStatus, setFetchStatus] = useState<string>("LOADING");
   const [open, setOpen] = useState(false);
 
   // helper error to reduce code in the useEffect
@@ -81,7 +81,7 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
         setFetchStatus("FAILED");
       }
       updateSuburbById(Id, data)
-        .then((_data) => {
+        .then(() => {
           navigate("/");
           setError(null);
         })
@@ -95,7 +95,7 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
         });
     } else {
       createSuburb(data)
-        .then((_data) => {
+        .then(() => {
           navigate("/");
           setError(null);
         })
