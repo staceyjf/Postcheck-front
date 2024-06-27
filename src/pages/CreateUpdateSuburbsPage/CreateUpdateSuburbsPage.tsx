@@ -96,7 +96,6 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
     } else {
       createSuburb(data)
         .then((_data) => {
-          console.log(data);
           navigate("/");
           setError(null);
         })

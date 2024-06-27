@@ -89,10 +89,6 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
 
   const onSubmit = (postcode: string, suburbIds: number[]) => {
     const data = { postcode, suburbIds };
-
-    console.log("this is data");
-    console.log(data);
-
     if (mode === "Edit") {
       if (isNaN(Id)) {
         console.error("Invalid Id");
@@ -117,7 +113,6 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
     } else {
       createPostCode(data)
         .then((_data) => {
-          console.log(data);
           navigate("/");
           setError(null);
         })

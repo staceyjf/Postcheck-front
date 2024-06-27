@@ -23,7 +23,6 @@ export const createSuburb = async (
       "Content-Type": "application/json",
     },
   });
-  console.log(response);
   if (!response.ok) {
     const errorData = await response.json();
     console.error("Error:", errorData.errorMessages);

@@ -43,7 +43,6 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
           "There was an issue with signing in. Please try again."
         );
       }
-      console.log(token);
       localStorage.setItem("token", token);
       getUser();
     } catch (error) {

@@ -4,10 +4,14 @@ The front end demo for my PostChecker-API backend in Springboot and/or Flask.
 
 Deployed at: https://www.staceyfanner.com/Postcheck-front/
 
-NOTE: I'm in the processing of rebuilding the back end in flask which i plan to dockerise and then deploy with Google Run. This means that the live demo currently does not have a workking backend so watch this space.
+NOTE: This is currently being powered by my springboot API.
+
+Please use the following user details to log in:
+username: admin
+password: admin
 
 <div align="center">
-  <img src="./postcheckAPI.gif" alt="Homepage">
+  <img src="./public/postcheckAPI.gif" alt="Homepage">
 </div>
 
 ## Build Steps
@@ -59,20 +63,24 @@ Given the fictional brief, I used the existing Aus-post Postcode checker as my d
 
 1. **Increased functionality:** Build out more frontend functionality like adding a new user form and additional suburb CRUD functionality to be able to update and delete suburbs.
 
-Changelog  
+## Changelog  
 Date: 25/06/24
 
-Updates:
+Updates: 
 
-Structure:
+1. Structure: Separated the front end app from SpringTasker repo.
 
-Separated the front end app from SpringTasker repo.
+Date: 27/06/24
+
+Updates: 
+
+1. Deployment: Successful deployed with GH pages.
 
 ## Screenshots
 
 | New Form                              | Update Form                          | Testing - Front                         |
 | ------------------------------------- | ------------------------------------ | --------------------------------------- |
-| <img src="./newform.png"  />   | <img src="./updateform.png"  /> | <img src="./test.png"  /> |
+| <img src="./public/newform.png"  />   | <img src="./public/updateform.png"  /> | <img src="./public/test.png"  /> |
 
 ## Technologies Used
 
