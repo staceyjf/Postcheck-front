@@ -7,7 +7,7 @@ Deployed at: https://www.staceyfanner.com/Postcheck-front/
 NOTE: I'm in the processing of rebuilding the back end in flask which i plan to dockerise and then deploy with Google Run. This means that the live demo currently does not have a workking backend so watch this space.
 
 <div align="center">
-  <img src="./public/postcheckAPI.gif" alt="Homepage">
+  <img src="./postcheckAPI.gif" alt="Homepage">
 </div>
 
 ## Build Steps
@@ -72,7 +72,7 @@ Separated the front end app from SpringTasker repo.
 
 | New Form                              | Update Form                          | Testing - Front                         |
 | ------------------------------------- | ------------------------------------ | --------------------------------------- |
-| <img src="./public/newform.png"  />   | <img src="./public/updateform.png"  /> | <img src="./public/test.png"  /> |
+| <img src="./newform.png"  />   | <img src="./updateform.png"  /> | <img src="./test.png"  /> |
 
 ## Technologies Used
 
