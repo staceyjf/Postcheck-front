@@ -2,6 +2,8 @@ import { baseUrl } from "./api-config";
 import { SuburbResponse, SuburbForm } from "./api-responses.interfaces";
 import { fetchWithToken } from "./utils";
 
+console.log(baseUrl + "/suburbs");
+
 export const getAllSuburbs = async (): Promise<SuburbResponse[]> => {
   const response: Response = await fetch(baseUrl + "/suburbs");
   if (!response.ok) {
@@ -16,6 +18,7 @@ export const getAllSuburbs = async (): Promise<SuburbResponse[]> => {
 export const createSuburb = async (
   data: SuburbForm
 ): Promise<SuburbResponse> => {
+  console.log(data)
   const response = await fetchWithToken(baseUrl + "/suburbs", {
     method: "POST",
     body: JSON.stringify(data),

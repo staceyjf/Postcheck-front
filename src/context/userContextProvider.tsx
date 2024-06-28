@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { UserResponse } from "../services/api-responses.interfaces";
 import { signIn, getToken } from "../services/user-services";
+import { PrintRounded } from "@mui/icons-material";
 
 interface UserContext {
   user: UserResponse | null;
@@ -33,9 +34,9 @@ interface UserContextProviderProps {
 const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [user, setUser] = useState<UserResponse | null>(null);
 
-  const userSignIn = async (login: string, password: string) => {
+  const userSignIn = async (username: string, password: string) => {
     try {
-      const response = await signIn(login, password);
+      const response = await signIn(username, password);
       const token = response ? response.accessToken : null;
       if (!token) {
         console.error("ERROR: Received null token.");
@@ -44,7 +45,10 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
         );
       }
       localStorage.setItem("token", token);
-      getUser();
+      const user: UserResponse = {
+        username: username
+      };
+      setUser(user);
     } catch (error) {
       console.error("ERROR: " + error);
       throw new Error("There was an issue with signing in. Please try again.");
@@ -54,21 +58,6 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const signOut = () => {
     localStorage.removeItem("token");
     setUser(null);
-  };
-
-  const getUser = () => {
-    const token: string | null = getToken();
-    // extract the user info from the token payload
-    if (token) {
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      const user: UserResponse = {
-        username: payload.username,
-        role: payload.role,
-      };
-      setUser(user);
-      return;
-    }
-    return null;
   };
 
   return (

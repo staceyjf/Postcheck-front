@@ -18,7 +18,7 @@ export const getToken = (): string | null => {
 };
 
 export const signIn = async (
-  login: string,
+  username: string,
   password: string
 ): Promise<{ accessToken: string }> => {
   const response: Response = await fetch(`${baseUrl}/auth/signin`, {
@@ -26,7 +26,7 @@ export const signIn = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ login, password }),
+    body: JSON.stringify({ username, password }),
   });
 
   if (!response.ok) {

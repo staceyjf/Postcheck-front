@@ -15,5 +15,7 @@ export const fetchWithToken = async (
     Authorization: `Bearer ${token}`,
   };
 
+  console.log(url)
+
   return fetch(url, options);
 };
