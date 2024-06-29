@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import { UserResponse } from "../services/api-responses.interfaces";
-import { signIn, getToken } from "../services/user-services";
-import { PrintRounded } from "@mui/icons-material";
+import { signIn } from "../services/user-services";
 
 interface UserContext {
   user: UserResponse | null;
@@ -46,7 +45,7 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
       }
       localStorage.setItem("token", token);
       const user: UserResponse = {
-        username: username
+        username: username,
       };
       setUser(user);
     } catch (error) {

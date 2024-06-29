@@ -6,9 +6,7 @@ import IndexPage from "./pages/IndexPage/IndexPage";
 import "./App.scss";
 import { Container, Box } from "@mui/material";
 import Navbar from "./components/Navbar/Navbar";
-import UserContextProvider, {
-  UserContext,
-} from "./context/userContextProvider";
+import { UserContext } from "./context/userContextProvider";
 import CreateUpdatePage from "./pages/CreateUpdatePage/CreateUpdatePage";
 import CreateUpdateSuburbsPage from "./pages/CreateUpdateSuburbsPage/CreateUpdateSuburbsPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
@@ -16,6 +14,8 @@ import { useContext } from "react";
 
 function App() {
   const { user } = useContext(UserContext);
+
+  console.log(user);
 
   return (
     <>
@@ -62,42 +62,40 @@ function App() {
               padding: 2,
             }}
           >
-            <UserContextProvider>
-              <BrowserRouter basename="/Postcheck-front">
-                <Navbar />
-                <Box
-                  flexGrow={1}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  mt={1}
-                  mb={1}
-                  px={3}
-                  width="100%"
-                >
-                  <Routes>
-                    <Route path="/" element={<IndexPage />} />
-                    {user && (
-                      <>
-                        <Route
-                          path="/postcodes/create"
-                          element={<CreateUpdatePage mode="Create" />}
-                        />
-                        <Route
-                          path="/suburbs/create"
-                          element={<CreateUpdateSuburbsPage mode="Create" />}
-                        />
-                        <Route
-                          path="/postcodes/:id/edit"
-                          element={<CreateUpdatePage mode="Edit" />}
-                        />
-                      </>
-                    )}
-                    <Route path="*" element={<NotFoundPage />} />
-                  </Routes>
-                </Box>
-              </BrowserRouter>
-            </UserContextProvider>
+            <BrowserRouter basename="/Postcheck-front">
+              <Navbar />
+              <Box
+                flexGrow={1}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                mt={1}
+                mb={1}
+                px={3}
+                width="100%"
+              >
+                <Routes>
+                  <Route path="/" element={<IndexPage />} />
+                  {user && (
+                    <>
+                      <Route
+                        path="/postcodes/create"
+                        element={<CreateUpdatePage mode="Create" />}
+                      />
+                      <Route
+                        path="/suburbs/create"
+                        element={<CreateUpdateSuburbsPage mode="Create" />}
+                      />
+                      <Route
+                        path="/postcodes/:id/edit"
+                        element={<CreateUpdatePage mode="Edit" />}
+                      />
+                    </>
+                  )}
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </Box>
+            </BrowserRouter>
           </Container>
         </Box>
       </ThemeProvider>
