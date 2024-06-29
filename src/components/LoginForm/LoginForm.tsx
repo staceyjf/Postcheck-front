@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Alert, Snackbar } from "@mui/material";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "./LoginForm.module.scss";
 
 // define the props
@@ -7,63 +6,63 @@ interface LoginFormProps {
   placeholderUsername: string;
   placeholderPassword: string;
   onSubmit: (username: string, password: string) => void;
+  error: string | null;
+  setError: Dispatch<SetStateAction<string | null>>;
 }
 
 const LoginForm = ({
   placeholderUsername,
   placeholderPassword,
   onSubmit,
+  error,
+  setError,
 }: LoginFormProps) => {
-  const [error, setError] = useState<Error | null>(null);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isFormComplete, setIsFormComplete] = useState(false);
+
+  useEffect(() => {
+    setIsFormComplete(username.trim() !== "" && password.trim() !== "");
+  }, [username, password]);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    name === "username" ? setUsername(value) : setPassword(value);
+    setError(null);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const username = new FormData(form).get("username") as string;
-    const password = new FormData(form).get("psw") as string;
-
-    if (!username || !password) {
-      setError(new Error(`${!username ? "username" : "password"} is missing`));
-      return;
-    }
-
     onSubmit(username, password);
   };
 
   return (
     <>
-      {error && (
-        <Snackbar
-          open={true}
-          autoHideDuration={6000}
-          onClose={() => setError(null)}
-        >
-          <Alert
-            severity="error"
-            variant="filled"
-            sx={{ width: "100%" }}
-            aria-live="assertive"
-            data-testid="error-alert"
-          >
-            {error?.message}
-          </Alert>
-        </Snackbar>
-      )}
-      {!error && (
-        <form
-          onSubmit={handleSubmit}
-          className={styles.form}
-          data-testid="login-form"
-        >
+      <form
+        onSubmit={handleSubmit}
+        className={styles.form}
+        data-testid="login-form"
+      >
+        <div className={styles.form_container}>
           <input
             type="text"
             placeholder={placeholderUsername}
             name="username"
+            onChange={onChange}
           />
-          <input type="password" placeholder={placeholderPassword} name="psw" />
-          <button>Login</button>
-        </form>
-      )}
+          <input
+            type="password"
+            placeholder={placeholderPassword}
+            name="psw"
+            onChange={onChange}
+          />
+
+          <button disabled={!isFormComplete}>Login</button>
+        </div>
+        <div>
+          <small>{error || ""}</small>
+        </div>
+      </form>
     </>
   );
 };

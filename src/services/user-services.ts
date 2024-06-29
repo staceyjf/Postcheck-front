@@ -30,9 +30,11 @@ export const signIn = async (
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
-    throw new Error("Failed to sign in. Please try again later");
+    const err = await response.json();
+    console.error("Error:", err);
+    throw new Error(
+      "There was an issue with the login details. Please try again later"
+    );
   }
 
   return await response.json(); // returns the token
