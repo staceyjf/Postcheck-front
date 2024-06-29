@@ -1,17 +1,23 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import LoginForm from "./LoginForm";
+import UserContextProvider from "../../context/userContextProvider";
 
 describe("LoginForm", () => {
   const onSubmit = vi.fn((fn) => fn); //mock up of a function
+  const setError = vi.fn();
 
   it("should call onSubmit, with the value of the LoginForm for Create Mode", async () => {
     render(
-      <LoginForm
-        onSubmit={onSubmit}
-        placeholderUsername="Username"
-        placeholderPassword="Password"
-      />
+      <UserContextProvider>
+        <LoginForm
+          onSubmit={onSubmit}
+          placeholderUsername="Username"
+          placeholderPassword="Password"
+          error="Error test"
+          setError={setError}
+        />
+      </UserContextProvider>
     );
 
     const name = await screen.findByPlaceholderText("Username");
@@ -34,6 +40,8 @@ describe("LoginForm", () => {
         onSubmit={onSubmit}
         placeholderUsername="Username"
         placeholderPassword="Password"
+        error="Error test"
+        setError={setError}
       />
     );
 

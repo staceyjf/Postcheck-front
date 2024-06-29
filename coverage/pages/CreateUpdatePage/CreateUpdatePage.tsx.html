@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/192</span>
+                <span class='fraction'>0/173</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/192</span>
+                <span class='fraction'>0/173</span>
             </div>
         
             
@@ -236,45 +236,7 @@
 <a name='L171'></a><a href='#L171'>171</a>
 <a name='L172'></a><a href='#L172'>172</a>
 <a name='L173'></a><a href='#L173'>173</a>
-<a name='L174'></a><a href='#L174'>174</a>
-<a name='L175'></a><a href='#L175'>175</a>
-<a name='L176'></a><a href='#L176'>176</a>
-<a name='L177'></a><a href='#L177'>177</a>
-<a name='L178'></a><a href='#L178'>178</a>
-<a name='L179'></a><a href='#L179'>179</a>
-<a name='L180'></a><a href='#L180'>180</a>
-<a name='L181'></a><a href='#L181'>181</a>
-<a name='L182'></a><a href='#L182'>182</a>
-<a name='L183'></a><a href='#L183'>183</a>
-<a name='L184'></a><a href='#L184'>184</a>
-<a name='L185'></a><a href='#L185'>185</a>
-<a name='L186'></a><a href='#L186'>186</a>
-<a name='L187'></a><a href='#L187'>187</a>
-<a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a>
-<a name='L190'></a><a href='#L190'>190</a>
-<a name='L191'></a><a href='#L191'>191</a>
-<a name='L192'></a><a href='#L192'>192</a>
-<a name='L193'></a><a href='#L193'>193</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L174'></a><a href='#L174'>174</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -454,13 +416,13 @@
 <span class="cstat-no" title="statement not covered" >  getPostCodebyId,</span>
 <span class="cstat-no" title="statement not covered" >  updatePostCodeById,</span>
 <span class="cstat-no" title="statement not covered" >} from "../../services/postcode-services";</span>
-<span class="cstat-no" title="statement not covered" >import { Alert, Backdrop, Box, Skeleton, Snackbar } from "@mui/material";</span>
-<span class="cstat-no" title="statement not covered" >import CreateUpdateForm from "../../components/CreateUpdateForm/CreateUpdateForm";</span>
 <span class="cstat-no" title="statement not covered" >import {</span>
 <span class="cstat-no" title="statement not covered" >  PostCodeForm,</span>
 <span class="cstat-no" title="statement not covered" >  SuburbResponse,</span>
 <span class="cstat-no" title="statement not covered" >} from "../../services/api-responses.interfaces";</span>
 <span class="cstat-no" title="statement not covered" >import { getAllSuburbs } from "../../services/suburb-services";</span>
+<span class="cstat-no" title="statement not covered" >import { Alert, Box, Skeleton, Snackbar } from "@mui/material";</span>
+<span class="cstat-no" title="statement not covered" >import CreateUpdateForm from "../../components/CreateUpdateForm/CreateUpdateForm";</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >interface CreateUpdatePageProps {</span>
 <span class="cstat-no" title="statement not covered" >  mode: string;</span>
@@ -474,15 +436,14 @@
 <span class="cstat-no" title="statement not covered" >    PostCodeForm | undefined</span>
 <span class="cstat-no" title="statement not covered" >  &gt;();</span>
 <span class="cstat-no" title="statement not covered" >  const [suburbs, setSuburbs] = useState&lt;SuburbResponse[]&gt;([]);</span>
-<span class="cstat-no" title="statement not covered" >  const [error, setError] = useState&lt;Error | null&gt;(null);</span>
-<span class="cstat-no" title="statement not covered" >  const [fetchStatus, setFetchStatus] = useState&lt;String&gt;("LOADING");</span>
+<span class="cstat-no" title="statement not covered" >  const [error, setError] = useState&lt;string | null&gt;(null);</span>
+<span class="cstat-no" title="statement not covered" >  const [fetchStatus, setFetchStatus] = useState&lt;string&gt;("LOADING");</span>
 <span class="cstat-no" title="statement not covered" >  const [open, setOpen] = useState(false);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  // helper error to reduce code in the useEffect</span>
-<span class="cstat-no" title="statement not covered" >  const handleError = (e: Error, errorMessage: string, errorLog: string) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setError(new Error(errorMessage));</span>
+<span class="cstat-no" title="statement not covered" >  const handleError = (errorMessage: string, errorLog: string) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setError(errorMessage);</span>
 <span class="cstat-no" title="statement not covered" >    setOpen(true);</span>
-<span class="cstat-no" title="statement not covered" >    setFetchStatus("FAILED");</span>
 <span class="cstat-no" title="statement not covered" >    console.error(errorLog);</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -500,9 +461,8 @@
 <span class="cstat-no" title="statement not covered" >        })</span>
 <span class="cstat-no" title="statement not covered" >        .catch((e: Error) =&gt;</span>
 <span class="cstat-no" title="statement not covered" >          handleError(</span>
-<span class="cstat-no" title="statement not covered" >            e,</span>
-<span class="cstat-no" title="statement not covered" >            "Failed to fetch Postpost. Please try again.",</span>
-<span class="cstat-no" title="statement not covered" >            "ERROR: failed to updated id: " + Id + ", " + e</span>
+<span class="cstat-no" title="statement not covered" >            "Failed to fetch Postcode. Please try again.",</span>
+<span class="cstat-no" title="statement not covered" >            `ERROR: failed to update id: ${Id}, ${e.message}`</span>
 <span class="cstat-no" title="statement not covered" >          )</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
@@ -514,9 +474,8 @@
 <span class="cstat-no" title="statement not covered" >      })</span>
 <span class="cstat-no" title="statement not covered" >      .catch((e: Error) =&gt;</span>
 <span class="cstat-no" title="statement not covered" >        handleError(</span>
-<span class="cstat-no" title="statement not covered" >          e,</span>
-<span class="cstat-no" title="statement not covered" >          "Failed to fetch Postpost. Please try again.",</span>
-<span class="cstat-no" title="statement not covered" >          "ERROR: failed to fetch all postcodes"</span>
+<span class="cstat-no" title="statement not covered" >          "Failed to fetch suburbs. Please try again.",</span>
+<span class="cstat-no" title="statement not covered" >          "ERROR: failed to fetch all suburbs, " + e.message</span>
 <span class="cstat-no" title="statement not covered" >        )</span>
 <span class="cstat-no" title="statement not covered" >      );</span>
 <span class="cstat-no" title="statement not covered" >  }, []);</span>
@@ -534,42 +493,28 @@
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  const onSubmit = (postcode: string, suburbIds: number[]) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    const data = { postcode, suburbIds };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    console.log("this is data");</span>
-<span class="cstat-no" title="statement not covered" >    console.log(data);</span>
-<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >    if (mode === "Edit") {</span>
-<span class="cstat-no" title="statement not covered" >      if (isNaN(Id)) {</span>
-<span class="cstat-no" title="statement not covered" >        console.error("Invalid Id");</span>
-<span class="cstat-no" title="statement not covered" >        // TODO: add 404 page</span>
-<span class="cstat-no" title="statement not covered" >        setError(new Error(`Oops, something when wrong. Please try again`));</span>
-<span class="cstat-no" title="statement not covered" >        setOpen(true);</span>
-<span class="cstat-no" title="statement not covered" >        setFetchStatus("FAILED");</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >      updatePostCodeById(Id, data)</span>
-<span class="cstat-no" title="statement not covered" >        .then((_data) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        .then(() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          navigate("/");</span>
 <span class="cstat-no" title="statement not covered" >          setError(null);</span>
 <span class="cstat-no" title="statement not covered" >        })</span>
 <span class="cstat-no" title="statement not covered" >        .catch((e: Error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          setError(new Error(`Failed to update postcode. Please try again.`));</span>
+<span class="cstat-no" title="statement not covered" >          setError(`Failed to update postcode. Please try again.`);</span>
 <span class="cstat-no" title="statement not covered" >          setOpen(true);</span>
-<span class="cstat-no" title="statement not covered" >          setFetchStatus("FAILED");</span>
 <span class="cstat-no" title="statement not covered" >          console.error(</span>
 <span class="cstat-no" title="statement not covered" >            "ERROR: failed to update item with id: " + Id + ", " + e</span>
 <span class="cstat-no" title="statement not covered" >          );</span>
 <span class="cstat-no" title="statement not covered" >        });</span>
 <span class="cstat-no" title="statement not covered" >    } else {</span>
 <span class="cstat-no" title="statement not covered" >      createPostCode(data)</span>
-<span class="cstat-no" title="statement not covered" >        .then((_data) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          console.log(data);</span>
+<span class="cstat-no" title="statement not covered" >        .then(() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >          navigate("/");</span>
 <span class="cstat-no" title="statement not covered" >          setError(null);</span>
 <span class="cstat-no" title="statement not covered" >        })</span>
 <span class="cstat-no" title="statement not covered" >        .catch((e: Error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          setError(new Error(`Failed to create a postcode. Please try again.`));</span>
+<span class="cstat-no" title="statement not covered" >          setError(e.message);</span>
 <span class="cstat-no" title="statement not covered" >          setOpen(true);</span>
-<span class="cstat-no" title="statement not covered" >          setFetchStatus("FAILED");</span>
 <span class="cstat-no" title="statement not covered" >          console.error("ERROR: " + e);</span>
 <span class="cstat-no" title="statement not covered" >        });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
@@ -594,19 +539,17 @@
 <span class="cstat-no" title="statement not covered" >          &lt;/Box&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/&gt;</span>
 <span class="cstat-no" title="statement not covered" >      )}</span>
-<span class="cstat-no" title="statement not covered" >      {fetchStatus === "FAILED" &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Backdrop open={open} sx={{ color: "#fff", zIndex: 1 }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Snackbar open={open} autoHideDuration={6000} onClose={handleClose}&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Alert</span>
-<span class="cstat-no" title="statement not covered" >              severity="error"</span>
-<span class="cstat-no" title="statement not covered" >              variant="filled"</span>
-<span class="cstat-no" title="statement not covered" >              onClose={handleClose}</span>
-<span class="cstat-no" title="statement not covered" >              sx={{ width: "100%" }}</span>
-<span class="cstat-no" title="statement not covered" >            &gt;</span>
-<span class="cstat-no" title="statement not covered" >              {error?.message}</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/Alert&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/Snackbar&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/Backdrop&gt;</span>
+<span class="cstat-no" title="statement not covered" >      {error &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Snackbar open={open} autoHideDuration={6000} onClose={handleClose}&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Alert</span>
+<span class="cstat-no" title="statement not covered" >            severity="error"</span>
+<span class="cstat-no" title="statement not covered" >            variant="filled"</span>
+<span class="cstat-no" title="statement not covered" >            onClose={handleClose}</span>
+<span class="cstat-no" title="statement not covered" >            sx={{ width: "100%" }}</span>
+<span class="cstat-no" title="statement not covered" >          &gt;</span>
+<span class="cstat-no" title="statement not covered" >            {error}</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Alert&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/Snackbar&gt;</span>
 <span class="cstat-no" title="statement not covered" >      )}</span>
 <span class="cstat-no" title="statement not covered" >      {fetchStatus === "SUCCESS" &amp;&amp; (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;&gt;</span>
@@ -646,7 +589,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-19T12:44:32.754Z
+                at 2024-06-29T13:25:07.190Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -46,7 +46,6 @@ const LoginForm = ({
       username: username,
     };
     setUser(user);
-    console.log(user)
     onSubmit(username, password);
   };
 
