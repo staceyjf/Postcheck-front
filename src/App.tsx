@@ -15,8 +15,6 @@ import { useContext } from "react";
 function App() {
   const { user } = useContext(UserContext);
 
-  console.log(user);
-
   return (
     <>
       <ThemeProvider theme={theme}>

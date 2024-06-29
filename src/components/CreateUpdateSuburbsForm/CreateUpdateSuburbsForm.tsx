@@ -21,16 +21,20 @@ const CreateUpdateSuburbsForm = ({
   onSubmit,
 }: CreateUpdateSuburbsFormProps) => {
   const [selectedState, setSelectedState] = useState<StateType | null>(null);
-  const [nameError, setNameError] = useState<string | null>(null);
+  const [suburbError, setSuburbError] = useState<string | null>(null);
+  const [stateError, setStateError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.value;
+    const inputValue = e.target.value;
+    const field = e.target.id;
 
-    if (name === "") {
-      setNameError(`The field is missing.`);
+    if (inputValue === "") {
+      field === "name"
+        ? setSuburbError(`Suburb is missing.`)
+        : setStateError(`State is missing.`);
     } else {
       // Reset errors if input is valid
-      setNameError(null);
+      field === "name" ? setSuburbError(null) : setStateError(null);
     }
   };
 
@@ -42,8 +46,10 @@ const CreateUpdateSuburbsForm = ({
     const state = convertStateTypeToString(selectedState);
 
     // submit when there are no errors
-    if (name && !nameError && state) {
+    if (name && !suburbError && state) {
       onSubmit(name, state);
+    } else {
+      setSuburbError(`Suburb is missing.`);
     }
   };
 
@@ -61,12 +67,12 @@ const CreateUpdateSuburbsForm = ({
               color="secondary"
               size="small"
               margin="dense"
-              error={!!nameError}
+              error={!!suburbError}
               id="name"
               name="name"
               label="Suburb name"
               defaultValue={defaultValues?.name}
-              helperText={nameError || ""}
+              helperText={suburbError || ""}
               variant="filled"
               onChange={handleChange}
             />
@@ -90,6 +96,7 @@ const CreateUpdateSuburbsForm = ({
                   size="small"
                   margin="dense"
                   label="States"
+                  helperText={stateError || ""}
                 />
               )}
             />
