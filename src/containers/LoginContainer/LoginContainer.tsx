@@ -16,7 +16,7 @@ const LoginContainer = () => {
 
   return (
     <>
-      {error && (
+      {/* {error && (
         <Backdrop open={true} sx={{ color: "#fff", zIndex: 1 }}>
           <Snackbar
             open={true}
@@ -34,7 +34,7 @@ const LoginContainer = () => {
             </Alert>
           </Snackbar>
         </Backdrop>
-      )}
+      )} */}
       {!error && !user && (
         <LoginForm
           placeholderUsername="Username"
