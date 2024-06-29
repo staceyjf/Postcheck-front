@@ -54,6 +54,7 @@ const Navbar = () => {
         </IconButton>
         <Menu
           id="menu"
+          elevation={8}
           anchorEl={anchorEl}
           anchorOrigin={{
             vertical: "top",
@@ -68,11 +69,18 @@ const Navbar = () => {
           onClose={handleClose}
           data-testid="menu"
         >
-          <MenuItem disableRipple data-testid="login-form">
-            <LoginContainer />
-          </MenuItem>
+          {!user && (
+            <MenuItem disableRipple data-testid="login-form">
+              <LoginContainer />
+            </MenuItem>
+          )}
           {user &&
             [
+              {
+                text: "Home",
+                onClick: () => handleMenuItm("/"),
+                testId: "home-item",
+              },
               {
                 text: "Add a postcode",
                 onClick: () => handleMenuItm("/postcodes/create"),

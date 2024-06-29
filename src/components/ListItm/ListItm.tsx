@@ -30,7 +30,7 @@ const ListItm = ({
         {postcode}
       </TableCell>
       <TableCell sx={{ textTransform: "capitalize" }}>
-        {`${suburbName}, ${suburbState}`}
+        {suburbState !== "" ? `${suburbName}, ${suburbState}` : `${suburbName}`}
       </TableCell>
       <TableCell>
         {user && (

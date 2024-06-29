@@ -5,8 +5,8 @@ import { fetchWithToken } from "./utils";
 export const getAllPostCodes = async (): Promise<PostCodeResponse[]> => {
   const response: Response = await fetch(baseUrl + "/postcodes");
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error("Failed to fetch all PostCodes. Please try again later");
   }
 
@@ -17,12 +17,12 @@ export const findPostCodesBySuburb = async (
   queryTerm: string
 ): Promise<PostCodeResponse[]> => {
   const response: Response = await fetch(
-    `${baseUrl}/postcodes/postcodes?suburb=${queryTerm}`
+    `${baseUrl}/postcodes//query?suburb=${queryTerm}`
   );
 
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error(
       "Failed to fetch the associated postcode. Please try again"
     );
@@ -35,12 +35,12 @@ export const findSuburbsByPostCode = async (
   queryTerm: string
 ): Promise<PostCodeResponse[]> => {
   const response: Response = await fetch(
-    `${baseUrl}/postcodes/suburbs?postcode=${queryTerm}`
+    `${baseUrl}/postcodes//query?postcode=${queryTerm}`
   );
 
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error("Failed to fetch the associated suburb. Please try again");
   }
 
@@ -58,8 +58,8 @@ export const createPostCode = async (
     },
   });
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error(
       "Oops, something went wrong while trying to create a new PostCode. Please try again."
     );
@@ -79,8 +79,8 @@ export const getPostCodebyId = async (
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error(
       `Failed to fetch PostCode with id: ${id}. Please try again later`
     );
@@ -101,8 +101,8 @@ export const updatePostCodeById = async (
     },
   });
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error(
       `Oops, something went wrong while trying to update Postcode with id: ${id}. Please try again.`
     );
@@ -119,8 +119,8 @@ export const deleteById = async (id: number) => {
   });
   if (response.status !== 204) {
     // Spring is sending back a 204 No Content HTTP request
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error(
       `Oops, something went wrong while trying to delete Postcode with id: ${id}. Please try again.`
     );

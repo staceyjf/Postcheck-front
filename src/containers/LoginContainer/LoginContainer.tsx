@@ -4,7 +4,7 @@ import { UserContext } from "../../context/userContextProvider";
 
 const LoginContainer = () => {
   const [error, setError] = useState<string | null>(null);
-  const {userSignIn} = useContext(UserContext);
+  const { user, userSignIn } = useContext(UserContext);
 
   const onSubmit = (username: string, password: string) => {
     userSignIn(username, password).catch((e: unknown) => {
@@ -15,6 +15,7 @@ const LoginContainer = () => {
 
   return (
     <>
+      {!user && (
         <LoginForm
           placeholderUsername="Username"
           placeholderPassword="Password"
@@ -22,6 +23,7 @@ const LoginContainer = () => {
           error={error}
           setError={setError}
         />
+      )}
     </>
   );
 };

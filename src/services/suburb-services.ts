@@ -2,13 +2,11 @@ import { baseUrl } from "./api-config";
 import { SuburbResponse, SuburbForm } from "./api-responses.interfaces";
 import { fetchWithToken } from "./utils";
 
-console.log(baseUrl + "/suburbs");
-
 export const getAllSuburbs = async (): Promise<SuburbResponse[]> => {
   const response: Response = await fetch(baseUrl + "/suburbs");
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error("Failed to fetch all Suburbs. Please try again later");
   }
 
@@ -18,7 +16,6 @@ export const getAllSuburbs = async (): Promise<SuburbResponse[]> => {
 export const createSuburb = async (
   data: SuburbForm
 ): Promise<SuburbResponse> => {
-  console.log(data)
   const response = await fetchWithToken(baseUrl + "/suburbs", {
     method: "POST",
     body: JSON.stringify(data),
@@ -27,8 +24,8 @@ export const createSuburb = async (
     },
   });
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error(
       "Oops, something went wrong while trying to create a new Suburb. Please try again."
     );
@@ -46,8 +43,8 @@ export const getSuburbById = async (id: number): Promise<SuburbResponse> => {
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error(
       `Failed to fetch Suburbs with id: ${id}. Please try again later`
     );
@@ -68,8 +65,8 @@ export const updateSuburbById = async (
     },
   });
   if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Error:", errorData.errorMessages);
+    const err = await response.json();
+    console.error("Error:", err);
     throw new Error(
       `Oops, something went wrong while trying to update Suburbs with id: ${id}. Please try again.`
     );
