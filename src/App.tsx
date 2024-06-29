@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import UserContextProvider from "./context/userContextProvider";
 import CreateUpdatePage from "./pages/CreateUpdatePage/CreateUpdatePage";
 import CreateUpdateSuburbsPage from "./pages/CreateUpdateSuburbsPage/CreateUpdateSuburbsPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
                       path="/postcodes/:id/edit"
                       element={<CreateUpdatePage mode="Edit" />}
                     />
+                    <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </Box>
               </BrowserRouter>
