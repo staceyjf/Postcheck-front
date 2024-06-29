@@ -26,9 +26,7 @@ export const createSuburb = async (
   if (!response.ok) {
     const err = await response.json();
     console.error("Error:", err);
-    throw new Error(
-      "Oops, something went wrong while trying to create a new Suburb. Please try again."
-    );
+    throw new Error(err.message);
   }
 
   return await response.json();

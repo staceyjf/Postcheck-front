@@ -31,7 +31,6 @@ const IndexPage = () => {
 
   type SearchFunctionType = (searchTerm: string) => Promise<PostCodeResponse[]>;
 
-
   const fetchAllpostcodes = () => {
     getAllPostCodes()
       .then((data) => {
@@ -45,7 +44,10 @@ const IndexPage = () => {
       });
   };
 
-  const handleSearch = (searchFunction: SearchFunctionType, searchTerm: string) => {
+  const handleSearch = (
+    searchFunction: SearchFunctionType,
+    searchTerm: string
+  ) => {
     setShowResults(true);
     searchFunction(searchTerm)
       .then((data: PostCodeResponse[]) => {
@@ -68,11 +70,13 @@ const IndexPage = () => {
   }, []);
 
   useEffect(() => {
-    if (searchTerm && searchTerm.match(/\d+/)) { // for postcodes
+    if (searchTerm && searchTerm.match(/\d+/)) {
+      // for postcodes
       handleSearch(findSuburbsByPostCode, searchTerm);
     } else if (searchTerm) {
       handleSearch(findPostCodesBySuburb, searchTerm.toLowerCase()); // for suburbs
-    } else if (!searchTerm) { // to get all
+    } else if (!searchTerm) {
+      // to get all
       setShowResults(true);
       fetchAllpostcodes();
     }
@@ -112,23 +116,21 @@ const IndexPage = () => {
         </Box>
       )}
       {fetchStatus === "FAILED" && (
-        <Backdrop open={true} sx={{ color: "#fff", zIndex: 1 }}>
-          <Snackbar
-            open={true}
-            autoHideDuration={6000}
-            onClose={() => setError(null)}
+        <Snackbar
+          open={true}
+          autoHideDuration={6000}
+          onClose={() => setError(null)}
+        >
+          <Alert
+            severity="error"
+            variant="filled"
+            sx={{ width: "100%" }}
+            aria-live="assertive"
+            data-testid="error-alert"
           >
-            <Alert
-              severity="error"
-              variant="filled"
-              sx={{ width: "100%" }}
-              aria-live="assertive"
-              data-testid="error-alert"
-            >
-              {error?.message}
-            </Alert>
-          </Snackbar>
-        </Backdrop>
+            {error?.message}
+          </Alert>
+        </Snackbar>
       )}
       {fetchStatus === "SUCCESS" && (
         <Box display="flex" flexDirection="column" rowGap="0.75em">

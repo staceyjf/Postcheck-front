@@ -60,9 +60,7 @@ export const createPostCode = async (
   if (!response.ok) {
     const err = await response.json();
     console.error("Error:", err);
-    throw new Error(
-      "Oops, something went wrong while trying to create a new PostCode. Please try again."
-    );
+    throw new Error(err.message);
   }
 
   return await response.json();

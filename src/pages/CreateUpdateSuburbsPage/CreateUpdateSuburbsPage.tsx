@@ -5,7 +5,7 @@ import {
   getSuburbById,
   updateSuburbById,
 } from "../../services/suburb-services";
-import { Alert, Backdrop, Box, Skeleton, Snackbar } from "@mui/material";
+import { Alert, Box, Skeleton, Snackbar } from "@mui/material";
 import CreateUpdateSuburbsForm from "../../components/CreateUpdateSuburbsForm/CreateUpdateSuburbsForm";
 import { SuburbForm } from "../../services/api-responses.interfaces";
 
@@ -18,20 +18,15 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
   const { id: idParam } = useParams();
   const Id = Number(idParam);
   const [defaultValues, setDefaultValues] = useState<SuburbForm | undefined>();
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [fetchStatus, setFetchStatus] = useState<string>("LOADING");
   const [open, setOpen] = useState(false);
 
   // helper error to reduce code in the useEffect
-  const handleError = (
-    error: Error,
-    errorMessage: string,
-    errorLog: string
-  ) => {
-    setError(new Error(errorMessage));
+  const handleError = (errorMessage: string, errorLog: string) => {
+    setError(errorMessage);
     setOpen(true);
-    setFetchStatus("FAILED");
-    console.error(errorLog + " " + error);
+    console.error(errorLog);
   };
 
   useEffect(() => {
@@ -48,9 +43,8 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
         })
         .catch((e: Error) =>
           handleError(
-            e,
             "Failed to fetch Suburb. Please try again.",
-            "ERROR: failed to updated id: " + Id + ", " + e
+            `ERROR: failed to update id: ${Id}, ${e.message}`
           )
         );
     } else {
@@ -73,22 +67,14 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
     const data = { name, state };
 
     if (mode === "Edit") {
-      if (isNaN(Id)) {
-        console.error("Invalid Id");
-        // TODO: add 404 page
-        setError(new Error(`Oops, something when wrong. Please try again`));
-        setOpen(true);
-        setFetchStatus("FAILED");
-      }
       updateSuburbById(Id, data)
         .then(() => {
           navigate("/");
           setError(null);
         })
         .catch((e: Error) => {
-          setError(new Error(`Failed to update suburb. Please try again.`));
+          setError(e.message);
           setOpen(true);
-          setFetchStatus("FAILED");
           console.error(
             "ERROR: failed to update item with id: " + Id + ", " + e
           );
@@ -100,9 +86,8 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
           setError(null);
         })
         .catch((e: Error) => {
-          setError(new Error(`Failed to create a suburb. Please try again.`));
+          setError(e.message);
           setOpen(true);
-          setFetchStatus("FAILED");
           console.error("ERROR: " + e);
         });
     }
@@ -127,19 +112,17 @@ const CreateUpdateSuburbsPage = ({ mode }: CreateUpdateSuburbsPageProps) => {
           </Box>
         </>
       )}
-      {fetchStatus === "FAILED" && (
-        <Backdrop open={open} sx={{ color: "#fff", zIndex: 1 }}>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert
-              severity="error"
-              variant="filled"
-              onClose={handleClose}
-              sx={{ width: "100%" }}
-            >
-              {error?.message}
-            </Alert>
-          </Snackbar>
-        </Backdrop>
+      {error && (
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            severity="error"
+            variant="filled"
+            onClose={handleClose}
+            sx={{ width: "100%" }}
+          >
+            {error}
+          </Alert>
+        </Snackbar>
       )}
       {fetchStatus === "SUCCESS" && (
         <>

@@ -5,13 +5,13 @@ import {
   getPostCodebyId,
   updatePostCodeById,
 } from "../../services/postcode-services";
-import { Alert, Backdrop, Box, Skeleton, Snackbar } from "@mui/material";
-import CreateUpdateForm from "../../components/CreateUpdateForm/CreateUpdateForm";
 import {
   PostCodeForm,
   SuburbResponse,
 } from "../../services/api-responses.interfaces";
 import { getAllSuburbs } from "../../services/suburb-services";
+import { Alert, Box, Skeleton, Snackbar } from "@mui/material";
+import CreateUpdateForm from "../../components/CreateUpdateForm/CreateUpdateForm";
 
 interface CreateUpdatePageProps {
   mode: string;
@@ -25,20 +25,15 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
     PostCodeForm | undefined
   >();
   const [suburbs, setSuburbs] = useState<SuburbResponse[]>([]);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [fetchStatus, setFetchStatus] = useState<string>("LOADING");
   const [open, setOpen] = useState(false);
 
   // helper error to reduce code in the useEffect
-  const handleError = (
-    error: Error,
-    errorMessage: string,
-    errorLog: string
-  ) => {
-    setError(new Error(errorMessage));
+  const handleError = (errorMessage: string, errorLog: string) => {
+    setError(errorMessage);
     setOpen(true);
-    setFetchStatus("FAILED");
-    console.error(errorLog + " " + error);
+    console.error(errorLog);
   };
 
   useEffect(() => {
@@ -55,9 +50,8 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
         })
         .catch((e: Error) =>
           handleError(
-            e,
-            "Failed to fetch Postpost. Please try again.",
-            "ERROR: failed to updated id: " + Id + ", " + e
+            "Failed to fetch Postcode. Please try again.",
+            `ERROR: failed to update id: ${Id}, ${e.message}`
           )
         );
     }
@@ -69,9 +63,8 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
       })
       .catch((e: Error) =>
         handleError(
-          e,
-          "Failed to fetch Postpost. Please try again.",
-          "ERROR: failed to fetch all postcodes"
+          "Failed to fetch suburbs. Please try again.",
+          "ERROR: failed to fetch all suburbs, " + e.message
         )
       );
   }, []);
@@ -90,22 +83,14 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
   const onSubmit = (postcode: string, suburbIds: number[]) => {
     const data = { postcode, suburbIds };
     if (mode === "Edit") {
-      if (isNaN(Id)) {
-        console.error("Invalid Id");
-        // TODO: add 404 page
-        setError(new Error(`Oops, something when wrong. Please try again`));
-        setOpen(true);
-        setFetchStatus("FAILED");
-      }
       updatePostCodeById(Id, data)
         .then(() => {
           navigate("/");
           setError(null);
         })
         .catch((e: Error) => {
-          setError(new Error(`Failed to update postcode. Please try again.`));
+          setError(`Failed to update postcode. Please try again.`);
           setOpen(true);
-          setFetchStatus("FAILED");
           console.error(
             "ERROR: failed to update item with id: " + Id + ", " + e
           );
@@ -117,9 +102,8 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
           setError(null);
         })
         .catch((e: Error) => {
-          setError(new Error(`Failed to create a postcode. Please try again.`));
+          setError(e.message);
           setOpen(true);
-          setFetchStatus("FAILED");
           console.error("ERROR: " + e);
         });
     }
@@ -144,19 +128,17 @@ const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) => {
           </Box>
         </>
       )}
-      {fetchStatus === "FAILED" && (
-        <Backdrop open={open} sx={{ color: "#fff", zIndex: 1 }}>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert
-              severity="error"
-              variant="filled"
-              onClose={handleClose}
-              sx={{ width: "100%" }}
-            >
-              {error?.message}
-            </Alert>
-          </Snackbar>
-        </Backdrop>
+      {error && (
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            severity="error"
+            variant="filled"
+            onClose={handleClose}
+            sx={{ width: "100%" }}
+          >
+            {error}
+          </Alert>
+        </Snackbar>
       )}
       {fetchStatus === "SUCCESS" && (
         <>

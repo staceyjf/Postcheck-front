@@ -6,12 +6,17 @@ import IndexPage from "./pages/IndexPage/IndexPage";
 import "./App.scss";
 import { Container, Box } from "@mui/material";
 import Navbar from "./components/Navbar/Navbar";
-import UserContextProvider from "./context/userContextProvider";
+import UserContextProvider, {
+  UserContext,
+} from "./context/userContextProvider";
 import CreateUpdatePage from "./pages/CreateUpdatePage/CreateUpdatePage";
 import CreateUpdateSuburbsPage from "./pages/CreateUpdateSuburbsPage/CreateUpdateSuburbsPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import { useContext } from "react";
 
 function App() {
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -72,18 +77,22 @@ function App() {
                 >
                   <Routes>
                     <Route path="/" element={<IndexPage />} />
-                    <Route
-                      path="/postcodes/create"
-                      element={<CreateUpdatePage mode="Create" />}
-                    />
-                    <Route
-                      path="/suburbs/create"
-                      element={<CreateUpdateSuburbsPage mode="Create" />}
-                    />
-                    <Route
-                      path="/postcodes/:id/edit"
-                      element={<CreateUpdatePage mode="Edit" />}
-                    />
+                    {user && (
+                      <>
+                        <Route
+                          path="/postcodes/create"
+                          element={<CreateUpdatePage mode="Create" />}
+                        />
+                        <Route
+                          path="/suburbs/create"
+                          element={<CreateUpdateSuburbsPage mode="Create" />}
+                        />
+                        <Route
+                          path="/postcodes/:id/edit"
+                          element={<CreateUpdatePage mode="Edit" />}
+                        />
+                      </>
+                    )}
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </Box>
