@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { UserForm, UserResponse } from "../../services/api-responses.interfaces";
+import {
+  UserForm,
+  UserResponse,
+} from "../../services/api-responses.interfaces";
 import { Box, Skeleton, Snackbar, Alert } from "@mui/material";
 import { useState } from "react";
 import CreateUserForm from "../../components/CreateUserForm/CreateUserForm";
@@ -15,7 +18,7 @@ const CreateNewUserPage = ({ mode }: CreateNewUserPageProps) => {
   const [fetchStatus, setFetchStatus] = useState<string>("LOADING");
   const [open, setOpen] = useState(false);
 
-    const handleClose = (
+  const handleClose = (
     _event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
@@ -27,6 +30,7 @@ const CreateNewUserPage = ({ mode }: CreateNewUserPageProps) => {
   };
 
   const onSubmit = (user: UserForm) => {
+    console.log(user);
     // createUser(user)
     //   .then(() => {
     //     navigate("/");
@@ -39,9 +43,9 @@ const CreateNewUserPage = ({ mode }: CreateNewUserPageProps) => {
     //   });
   };
 
-    return (
+  return (
     <Box width="100%">
-      {fetchStatus === "LOADING" && (
+      {/* {fetchStatus === "LOADING" && (
         <>
           <Box
             display="flex"
@@ -70,15 +74,11 @@ const CreateNewUserPage = ({ mode }: CreateNewUserPageProps) => {
           </Alert>
         </Snackbar>
       )}
-      {fetchStatus === "SUCCESS" && (
-       <>
-            <CreateUserForm
-              onSubmit={onSubmit}
-              mode="Create"
-              user={user}
-            />
-        </>
-      )}
+      {fetchStatus === "SUCCESS" && ( */}
+      <>
+        <CreateUserForm onSubmit={onSubmit} mode="Create" />
+      </>
+      {/* )} */}
     </Box>
   );
 };

@@ -21,6 +21,7 @@ const LoginForm = ({
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isFormComplete, setIsFormComplete] = useState(false);
+
   useEffect(() => {
     setIsFormComplete(username.trim() !== "" && password.trim() !== "");
   }, [username, password]);
@@ -49,12 +50,14 @@ const LoginForm = ({
         <div className={styles.form_container}>
           <input
             type="text"
+            id="username"
             placeholder={placeholderUsername}
             name="username"
             onChange={onChange}
           />
           <input
             type="password"
+            id="password"
             placeholder={placeholderPassword}
             name="psw"
             onChange={onChange}

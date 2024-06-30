@@ -44,7 +44,6 @@ const CreateUpdateSuburbsForm = ({
     const name = suburb;
     const state = convertStateTypeToString(selectedState);
 
-    if (!name) setSuburbError(`Suburb is missing.`);
     if (!selectedState) setStateError(`State is missing.`);
 
     if (name && selectedState) {
