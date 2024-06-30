@@ -1,11 +1,4 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { UserContext } from "../../context/userContextProvider";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "./LoginForm.module.scss";
 import { UserResponse } from "../../services/api-responses.interfaces";
 
@@ -13,7 +6,7 @@ import { UserResponse } from "../../services/api-responses.interfaces";
 interface LoginFormProps {
   placeholderUsername: string;
   placeholderPassword: string;
-  onSubmit: (username: string, password: string) => void;
+  onSubmit: (username: string, password: string, user: UserResponse) => void;
   error: string | null;
   setError: Dispatch<SetStateAction<string | null>>;
 }
@@ -28,8 +21,6 @@ const LoginForm = ({
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isFormComplete, setIsFormComplete] = useState(false);
-  const { setUser } = useContext(UserContext);
-
   useEffect(() => {
     setIsFormComplete(username.trim() !== "" && password.trim() !== "");
   }, [username, password]);
@@ -42,11 +33,10 @@ const LoginForm = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user: UserResponse = {
+    const signedInUser: UserResponse = {
       username: username,
     };
-    setUser(user);
-    onSubmit(username, password);
+    onSubmit(username, password, signedInUser);
   };
 
   return (

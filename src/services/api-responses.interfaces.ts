@@ -27,3 +27,9 @@ export interface UserResponse {
   password?: string;
   email?: string;
 }
+
+export interface UserForm {
+  username: string;
+  password?: string;
+  email?: string;
+}

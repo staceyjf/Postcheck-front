@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import {
   Autocomplete,
   Box,
@@ -20,36 +20,35 @@ const CreateUpdateSuburbsForm = ({
   mode,
   onSubmit,
 }: CreateUpdateSuburbsFormProps) => {
-  const [selectedState, setSelectedState] = useState<StateType | null>(null);
+  const [suburb, setSuburb] = useState<string | null>(null);
   const [suburbError, setSuburbError] = useState<string | null>(null);
+  const [selectedState, setSelectedState] = useState<StateType | null>(null);
   const [stateError, setStateError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    const field = e.target.id;
+    const field = e.target.name;
 
-    if (inputValue === "") {
-      field === "name"
-        ? setSuburbError(`Suburb is missing.`)
-        : setStateError(`State is missing.`);
-    } else {
-      // Reset errors if input is valid
-      field === "name" ? setSuburbError(null) : setStateError(null);
+    if (field === "name") {
+      if (inputValue === "") {
+        setSuburbError(`Suburb is missing.`);
+      } else {
+        setSuburbError(null);
+      }
+      setSuburb(inputValue);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const name = new FormData(form).get("name") as string;
-
+    const name = suburb;
     const state = convertStateTypeToString(selectedState);
 
-    // submit when there are no errors
-    if (name && !suburbError && state) {
+    if (!name) setSuburbError(`Suburb is missing.`);
+    if (!selectedState) setStateError(`State is missing.`);
+
+    if (name && selectedState) {
       onSubmit(name, state);
-    } else {
-      setSuburbError(`Suburb is missing.`);
     }
   };
 
@@ -86,6 +85,7 @@ const CreateUpdateSuburbsForm = ({
               value={selectedState}
               onChange={(_event, newValue) => {
                 setSelectedState(newValue);
+                setStateError(null);
               }}
               getOptionLabel={(option) => `${option.state}`}
               renderInput={(params) => (
@@ -96,6 +96,7 @@ const CreateUpdateSuburbsForm = ({
                   size="small"
                   margin="dense"
                   label="States"
+                  error={!!stateError}
                   helperText={stateError || ""}
                 />
               )}

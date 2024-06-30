@@ -44,10 +44,10 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
         );
       }
       localStorage.setItem("token", token);
-      const user: UserResponse = {
+      const signedInUser: UserResponse = {
         username: username,
       };
-      setUser(user);
+      setUser(signedInUser);
     } catch (error) {
       console.error("ERROR: " + error);
       throw new Error("There was an issue with signing in. Please try again.");
