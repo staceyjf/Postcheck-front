@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Alert,
-  Backdrop,
-  Box,
-  Skeleton,
-  Snackbar,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Skeleton, Snackbar, Typography } from "@mui/material";
 import { PostCodeResponse } from "../../services/api-responses.interfaces";
 import {
   getAllPostCodes,
