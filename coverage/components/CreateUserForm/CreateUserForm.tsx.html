@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/CreateUpdatePage/CreateUpdatePage.tsx</title>
+    <title>Code coverage report for components/CreateUserForm/CreateUserForm.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/CreateUpdatePage</a> CreateUpdatePage.tsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/CreateUserForm</a> CreateUserForm.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/173</span>
+                <span class='fraction'>0/169</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/173</span>
+                <span class='fraction'>0/169</span>
             </div>
         
             
@@ -232,11 +232,7 @@
 <a name='L167'></a><a href='#L167'>167</a>
 <a name='L168'></a><a href='#L168'>168</a>
 <a name='L169'></a><a href='#L169'>169</a>
-<a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a>
-<a name='L172'></a><a href='#L172'>172</a>
-<a name='L173'></a><a href='#L173'>173</a>
-<a name='L174'></a><a href='#L174'>174</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L170'></a><a href='#L170'>170</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -405,183 +401,175 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useEffect, useState } from "react";</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { useNavigate, useParams } from "react-router-dom";</span>
-<span class="cstat-no" title="statement not covered" >import {</span>
-<span class="cstat-no" title="statement not covered" >  createPostCode,</span>
-<span class="cstat-no" title="statement not covered" >  getPostCodebyId,</span>
-<span class="cstat-no" title="statement not covered" >  updatePostCodeById,</span>
-<span class="cstat-no" title="statement not covered" >} from "../../services/postcode-services";</span>
-<span class="cstat-no" title="statement not covered" >import {</span>
-<span class="cstat-no" title="statement not covered" >  PostCodeForm,</span>
-<span class="cstat-no" title="statement not covered" >  SuburbResponse,</span>
-<span class="cstat-no" title="statement not covered" >} from "../../services/api-responses.interfaces";</span>
-<span class="cstat-no" title="statement not covered" >import { getAllSuburbs } from "../../services/suburb-services";</span>
-<span class="cstat-no" title="statement not covered" >import { Alert, Box, Skeleton, Snackbar } from "@mui/material";</span>
-<span class="cstat-no" title="statement not covered" >import CreateUpdateForm from "../../components/CreateUpdateForm/CreateUpdateForm";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { FormEvent, useEffect, useState } from "react";</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { Box, FormControl, TextField, Button } from "@mui/material"; // Assuming Material-UI components</span>
+<span class="cstat-no" title="statement not covered" >import { UserForm } from "../../services/api-responses.interfaces";</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface CreateUpdatePageProps {</span>
-<span class="cstat-no" title="statement not covered" >  mode: string;</span>
+<span class="cstat-no" title="statement not covered" >interface CreateUserFormProps {</span>
+<span class="cstat-no" title="statement not covered" >  mode: "Create" | "Edit";</span>
+<span class="cstat-no" title="statement not covered" >  onSubmit: (user: UserForm) =&gt; void;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const CreateUpdatePage = ({ mode }: CreateUpdatePageProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const navigate = useNavigate();</span>
-<span class="cstat-no" title="statement not covered" >  const { id: idParam } = useParams();</span>
-<span class="cstat-no" title="statement not covered" >  const Id = Number(idParam);</span>
-<span class="cstat-no" title="statement not covered" >  const [defaultValues, setDefaultValues] = useState&lt;</span>
-<span class="cstat-no" title="statement not covered" >    PostCodeForm | undefined</span>
-<span class="cstat-no" title="statement not covered" >  &gt;();</span>
-<span class="cstat-no" title="statement not covered" >  const [suburbs, setSuburbs] = useState&lt;SuburbResponse[]&gt;([]);</span>
-<span class="cstat-no" title="statement not covered" >  const [error, setError] = useState&lt;string | null&gt;(null);</span>
-<span class="cstat-no" title="statement not covered" >  const [fetchStatus, setFetchStatus] = useState&lt;string&gt;("LOADING");</span>
-<span class="cstat-no" title="statement not covered" >  const [open, setOpen] = useState(false);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // helper error to reduce code in the useEffect</span>
-<span class="cstat-no" title="statement not covered" >  const handleError = (errorMessage: string, errorLog: string) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setError(errorMessage);</span>
-<span class="cstat-no" title="statement not covered" >    setOpen(true);</span>
-<span class="cstat-no" title="statement not covered" >    console.error(errorLog);</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >const CreateUserForm = ({ mode, onSubmit }: CreateUserFormProps) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const [username, setUsername] = useState&lt;string&gt;("");</span>
+<span class="cstat-no" title="statement not covered" >  const [usernameError, setUsernameError] = useState&lt;string | null&gt;(null);</span>
+<span class="cstat-no" title="statement not covered" >  const [password, setPassword] = useState&lt;string&gt;("");</span>
+<span class="cstat-no" title="statement not covered" >  const [confirmPassword, setConfirmPassword] = useState&lt;string&gt;("");</span>
+<span class="cstat-no" title="statement not covered" >  const [passwordError, setPasswordError] = useState&lt;string | null&gt;(null);</span>
+<span class="cstat-no" title="statement not covered" >  const [email, setEmail] = useState&lt;string&gt;("");</span>
+<span class="cstat-no" title="statement not covered" >  const [emailError, setEmailError] = useState&lt;string | null&gt;(null);</span>
+<span class="cstat-no" title="statement not covered" >  const [isFormComplete, setIsFormComplete] = useState(false);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (mode === "Edit") {</span>
-<span class="cstat-no" title="statement not covered" >      getPostCodebyId(Id)</span>
-<span class="cstat-no" title="statement not covered" >        .then((data) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          setFetchStatus("SUCCESS");</span>
-<span class="cstat-no" title="statement not covered" >          const newDefaultValues = {</span>
-<span class="cstat-no" title="statement not covered" >            id: data.id,</span>
-<span class="cstat-no" title="statement not covered" >            postcode: data.postcode,</span>
-<span class="cstat-no" title="statement not covered" >            associatedSuburbs: data.associatedSuburbs,</span>
-<span class="cstat-no" title="statement not covered" >          };</span>
-<span class="cstat-no" title="statement not covered" >          setDefaultValues(newDefaultValues);</span>
-<span class="cstat-no" title="statement not covered" >        })</span>
-<span class="cstat-no" title="statement not covered" >        .catch((e: Error) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >          handleError(</span>
-<span class="cstat-no" title="statement not covered" >            "Failed to fetch Postcode. Please try again.",</span>
-<span class="cstat-no" title="statement not covered" >            `ERROR: failed to update id: ${Id}, ${e.message}`</span>
-<span class="cstat-no" title="statement not covered" >          )</span>
+<span class="cstat-no" title="statement not covered" >    setIsFormComplete(</span>
+<span class="cstat-no" title="statement not covered" >      username.trim() !== "" &amp;&amp; password.trim() !== "" &amp;&amp; email.trim() !== ""</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
+<span class="cstat-no" title="statement not covered" >  }, [username, password, email]);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const handleChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const inputValue = e.target.value;</span>
+<span class="cstat-no" title="statement not covered" >    const field = e.target.name;</span>
+<span class="cstat-no" title="statement not covered" >    let setter;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    switch (field) {</span>
+<span class="cstat-no" title="statement not covered" >      case "username":</span>
+<span class="cstat-no" title="statement not covered" >        setUsernameError(inputValue === "" ? "Username cannot be blank" : null);</span>
+<span class="cstat-no" title="statement not covered" >        setter = setUsername;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+<span class="cstat-no" title="statement not covered" >      case "password":</span>
+<span class="cstat-no" title="statement not covered" >        if (inputValue === "") {</span>
+<span class="cstat-no" title="statement not covered" >          setPasswordError("Password cannot be blank");</span>
+<span class="cstat-no" title="statement not covered" >        } else if (!/(?=.*\d)(?=.*[a-zA-Z])/.test(inputValue)) {</span>
+<span class="cstat-no" title="statement not covered" >          setPasswordError(</span>
+<span class="cstat-no" title="statement not covered" >            "Password needs to contain at least one numerical value and one letter."</span>
+<span class="cstat-no" title="statement not covered" >          );</span>
+<span class="cstat-no" title="statement not covered" >        } else {</span>
+<span class="cstat-no" title="statement not covered" >          setPasswordError(null);</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >        setter = setPassword;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+<span class="cstat-no" title="statement not covered" >      case "confirmPassword":</span>
+<span class="cstat-no" title="statement not covered" >        setPasswordError(</span>
+<span class="cstat-no" title="statement not covered" >          inputValue != password ? "Passwords do not match" : null</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
+<span class="cstat-no" title="statement not covered" >        setter = setConfirmPassword;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+<span class="cstat-no" title="statement not covered" >      case "email":</span>
+<span class="cstat-no" title="statement not covered" >        if (inputValue === "") {</span>
+<span class="cstat-no" title="statement not covered" >          setEmailError("Email cannot be blank");</span>
+<span class="cstat-no" title="statement not covered" >        } else if (</span>
+<span class="cstat-no" title="statement not covered" >          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(inputValue)</span>
+<span class="cstat-no" title="statement not covered" >        ) {</span>
+<span class="cstat-no" title="statement not covered" >          setEmailError("Email need to be in a standardised email format.");</span>
+<span class="cstat-no" title="statement not covered" >        } else {</span>
+<span class="cstat-no" title="statement not covered" >          setEmailError(null);</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >        setter = setEmail;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+<span class="cstat-no" title="statement not covered" >      default:</span>
+<span class="cstat-no" title="statement not covered" >        console.warn("Unknown field");</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    getAllSuburbs()</span>
-<span class="cstat-no" title="statement not covered" >      .then((data) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        setFetchStatus("SUCCESS");</span>
-<span class="cstat-no" title="statement not covered" >        setSuburbs(data);</span>
-<span class="cstat-no" title="statement not covered" >      })</span>
-<span class="cstat-no" title="statement not covered" >      .catch((e: Error) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >        handleError(</span>
-<span class="cstat-no" title="statement not covered" >          "Failed to fetch suburbs. Please try again.",</span>
-<span class="cstat-no" title="statement not covered" >          "ERROR: failed to fetch all suburbs, " + e.message</span>
-<span class="cstat-no" title="statement not covered" >        )</span>
-<span class="cstat-no" title="statement not covered" >      );</span>
-<span class="cstat-no" title="statement not covered" >  }, []);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const handleClose = (</span>
-<span class="cstat-no" title="statement not covered" >    _event?: React.SyntheticEvent | Event,</span>
-<span class="cstat-no" title="statement not covered" >    reason?: string</span>
-<span class="cstat-no" title="statement not covered" >  ) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (reason === "clickaway") {</span>
-<span class="cstat-no" title="statement not covered" >      return;</span>
+<span class="cstat-no" title="statement not covered" >    if (setter) {</span>
+<span class="cstat-no" title="statement not covered" >      setter(inputValue);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    setOpen(false);</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const onSubmit = (postcode: string, suburbIds: number[]) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const data = { postcode, suburbIds };</span>
-<span class="cstat-no" title="statement not covered" >    if (mode === "Edit") {</span>
-<span class="cstat-no" title="statement not covered" >      updatePostCodeById(Id, data)</span>
-<span class="cstat-no" title="statement not covered" >        .then(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          navigate("/");</span>
-<span class="cstat-no" title="statement not covered" >          setError(null);</span>
-<span class="cstat-no" title="statement not covered" >        })</span>
-<span class="cstat-no" title="statement not covered" >        .catch((e: Error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          setError(`Failed to update postcode. Please try again.`);</span>
-<span class="cstat-no" title="statement not covered" >          setOpen(true);</span>
-<span class="cstat-no" title="statement not covered" >          console.error(</span>
-<span class="cstat-no" title="statement not covered" >            "ERROR: failed to update item with id: " + Id + ", " + e</span>
-<span class="cstat-no" title="statement not covered" >          );</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
+<span class="cstat-no" title="statement not covered" >  const handleSubmit = (e: FormEvent) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (</span>
+<span class="cstat-no" title="statement not covered" >      username &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >      password &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >      confirmPassword &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >      email &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >      !usernameError &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >      !passwordError &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >      !emailError &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >      password === confirmPassword // Ensure passwords match</span>
+<span class="cstat-no" title="statement not covered" >    ) {</span>
+<span class="cstat-no" title="statement not covered" >      const userForm: UserForm = { username, password, email };</span>
+<span class="cstat-no" title="statement not covered" >      onSubmit(userForm);</span>
 <span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >      createPostCode(data)</span>
-<span class="cstat-no" title="statement not covered" >        .then(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          navigate("/");</span>
-<span class="cstat-no" title="statement not covered" >          setError(null);</span>
-<span class="cstat-no" title="statement not covered" >        })</span>
-<span class="cstat-no" title="statement not covered" >        .catch((e: Error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          setError(e.message);</span>
-<span class="cstat-no" title="statement not covered" >          setOpen(true);</span>
-<span class="cstat-no" title="statement not covered" >          console.error("ERROR: " + e);</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
+<span class="cstat-no" title="statement not covered" >      setEmailError("Form is incomplete or contains errors.");</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;Box width="100%"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {fetchStatus === "LOADING" &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Box</span>
-<span class="cstat-no" title="statement not covered" >            display="flex"</span>
-<span class="cstat-no" title="statement not covered" >            flexDirection="column"</span>
-<span class="cstat-no" title="statement not covered" >            rowGap="0.5rem"</span>
-<span class="cstat-no" title="statement not covered" >            justifyContent="center"</span>
-<span class="cstat-no" title="statement not covered" >            data-testid="loading"</span>
-<span class="cstat-no" title="statement not covered" >          &gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Skeleton /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Skeleton width="60%" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Skeleton variant="rounded" width="100%" height={60}&gt;&lt;/Skeleton&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Skeleton variant="rounded" width="100%" height={60}&gt;&lt;/Skeleton&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Skeleton variant="rounded" width="100%" height={60}&gt;&lt;/Skeleton&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/Box&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/&gt;</span>
-<span class="cstat-no" title="statement not covered" >      )}</span>
-<span class="cstat-no" title="statement not covered" >      {error &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Snackbar open={open} autoHideDuration={6000} onClose={handleClose}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Alert</span>
-<span class="cstat-no" title="statement not covered" >            severity="error"</span>
+<span class="cstat-no" title="statement not covered" >    &lt;Box</span>
+<span class="cstat-no" title="statement not covered" >      width="100%"</span>
+<span class="cstat-no" title="statement not covered" >      display="flex"</span>
+<span class="cstat-no" title="statement not covered" >      justifyContent="center"</span>
+<span class="cstat-no" title="statement not covered" >      alignItems="center"</span>
+<span class="cstat-no" title="statement not covered" >    &gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;form onSubmit={handleSubmit} style={{ width: "65%" }}&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;FormControl fullWidth&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;TextField</span>
+<span class="cstat-no" title="statement not covered" >            color="secondary"</span>
+<span class="cstat-no" title="statement not covered" >            size="small"</span>
+<span class="cstat-no" title="statement not covered" >            margin="dense"</span>
+<span class="cstat-no" title="statement not covered" >            error={!!usernameError}</span>
+<span class="cstat-no" title="statement not covered" >            id="username"</span>
+<span class="cstat-no" title="statement not covered" >            name="username"</span>
+<span class="cstat-no" title="statement not covered" >            label="Username"</span>
+<span class="cstat-no" title="statement not covered" >            helperText={usernameError || ""}</span>
 <span class="cstat-no" title="statement not covered" >            variant="filled"</span>
-<span class="cstat-no" title="statement not covered" >            onClose={handleClose}</span>
-<span class="cstat-no" title="statement not covered" >            sx={{ width: "100%" }}</span>
+<span class="cstat-no" title="statement not covered" >            onChange={handleChange}</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;TextField</span>
+<span class="cstat-no" title="statement not covered" >            color="secondary"</span>
+<span class="cstat-no" title="statement not covered" >            size="small"</span>
+<span class="cstat-no" title="statement not covered" >            margin="dense"</span>
+<span class="cstat-no" title="statement not covered" >            error={!!passwordError}</span>
+<span class="cstat-no" title="statement not covered" >            id="password"</span>
+<span class="cstat-no" title="statement not covered" >            name="password"</span>
+<span class="cstat-no" title="statement not covered" >            label="Password"</span>
+<span class="cstat-no" title="statement not covered" >            helperText={passwordError || ""}</span>
+<span class="cstat-no" title="statement not covered" >            variant="filled"</span>
+<span class="cstat-no" title="statement not covered" >            onChange={handleChange}</span>
+<span class="cstat-no" title="statement not covered" >            type="password"</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;TextField</span>
+<span class="cstat-no" title="statement not covered" >            color="secondary"</span>
+<span class="cstat-no" title="statement not covered" >            size="small"</span>
+<span class="cstat-no" title="statement not covered" >            margin="dense"</span>
+<span class="cstat-no" title="statement not covered" >            error={!!passwordError}</span>
+<span class="cstat-no" title="statement not covered" >            id="confirmPassword"</span>
+<span class="cstat-no" title="statement not covered" >            name="confirmPassword"</span>
+<span class="cstat-no" title="statement not covered" >            label="Confirm Password"</span>
+<span class="cstat-no" title="statement not covered" >            variant="filled"</span>
+<span class="cstat-no" title="statement not covered" >            onChange={handleChange}</span>
+<span class="cstat-no" title="statement not covered" >            type="password"</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;TextField</span>
+<span class="cstat-no" title="statement not covered" >            color="secondary"</span>
+<span class="cstat-no" title="statement not covered" >            size="small"</span>
+<span class="cstat-no" title="statement not covered" >            margin="dense"</span>
+<span class="cstat-no" title="statement not covered" >            error={!!emailError}</span>
+<span class="cstat-no" title="statement not covered" >            id="email"</span>
+<span class="cstat-no" title="statement not covered" >            name="email"</span>
+<span class="cstat-no" title="statement not covered" >            label="Email"</span>
+<span class="cstat-no" title="statement not covered" >            helperText={emailError || ""}</span>
+<span class="cstat-no" title="statement not covered" >            variant="filled"</span>
+<span class="cstat-no" title="statement not covered" >            onChange={handleChange}</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Button</span>
+<span class="cstat-no" title="statement not covered" >            type="submit"</span>
+<span class="cstat-no" title="statement not covered" >            variant="contained"</span>
+<span class="cstat-no" title="statement not covered" >            color="secondary"</span>
+<span class="cstat-no" title="statement not covered" >            sx={{ margin: "3.5em" }}</span>
+<span class="cstat-no" title="statement not covered" >            disabled={!isFormComplete}</span>
 <span class="cstat-no" title="statement not covered" >          &gt;</span>
-<span class="cstat-no" title="statement not covered" >            {error}</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/Alert&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/Snackbar&gt;</span>
-<span class="cstat-no" title="statement not covered" >      )}</span>
-<span class="cstat-no" title="statement not covered" >      {fetchStatus === "SUCCESS" &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h1&gt;</span>
-<span class="cstat-no" title="statement not covered" >            {mode}{" "}</span>
-<span class="cstat-no" title="statement not covered" >            &lt;span style={{ fontStyle: "italic" }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >              {defaultValues?.postcode}</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/span&gt;{" "}</span>
-<span class="cstat-no" title="statement not covered" >            Postcode</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/h1&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {defaultValues &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >            &lt;CreateUpdateForm</span>
-<span class="cstat-no" title="statement not covered" >              defaultValues={defaultValues}</span>
-<span class="cstat-no" title="statement not covered" >              onSubmit={onSubmit}</span>
-<span class="cstat-no" title="statement not covered" >              suburbs={suburbs}</span>
-<span class="cstat-no" title="statement not covered" >              mode="Edit"</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          )}</span>
-<span class="cstat-no" title="statement not covered" >          {!defaultValues &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >            &lt;CreateUpdateForm</span>
-<span class="cstat-no" title="statement not covered" >              onSubmit={onSubmit}</span>
-<span class="cstat-no" title="statement not covered" >              mode="Create"</span>
-<span class="cstat-no" title="statement not covered" >              suburbs={suburbs}</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          )}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/&gt;</span>
-<span class="cstat-no" title="statement not covered" >      )}</span>
+<span class="cstat-no" title="statement not covered" >            {mode}</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Button&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/FormControl&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/form&gt;</span>
 <span class="cstat-no" title="statement not covered" >    &lt;/Box&gt;</span>
 <span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default CreateUpdatePage;</span>
+<span class="cstat-no" title="statement not covered" >export default CreateUserForm;</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

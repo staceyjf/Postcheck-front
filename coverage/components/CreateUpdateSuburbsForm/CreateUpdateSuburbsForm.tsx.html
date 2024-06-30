@@ -301,7 +301,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useState } from "react";</span></span></span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { FormEvent, useState } from "react";</span></span></span>
 <span class="cstat-no" title="statement not covered" >import {</span>
 <span class="cstat-no" title="statement not covered" >  Autocomplete,</span>
 <span class="cstat-no" title="statement not covered" >  Box,</span>
@@ -323,36 +323,34 @@
 <span class="cstat-no" title="statement not covered" >  mode,</span>
 <span class="cstat-no" title="statement not covered" >  onSubmit,</span>
 <span class="cstat-no" title="statement not covered" >}: CreateUpdateSuburbsFormProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const [selectedState, setSelectedState] = useState&lt;StateType | null&gt;(null);</span>
+<span class="cstat-no" title="statement not covered" >  const [suburb, setSuburb] = useState&lt;string | null&gt;(null);</span>
 <span class="cstat-no" title="statement not covered" >  const [suburbError, setSuburbError] = useState&lt;string | null&gt;(null);</span>
+<span class="cstat-no" title="statement not covered" >  const [selectedState, setSelectedState] = useState&lt;StateType | null&gt;(null);</span>
 <span class="cstat-no" title="statement not covered" >  const [stateError, setStateError] = useState&lt;string | null&gt;(null);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  const handleChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    const inputValue = e.target.value;</span>
-<span class="cstat-no" title="statement not covered" >    const field = e.target.id;</span>
+<span class="cstat-no" title="statement not covered" >    const field = e.target.name;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (inputValue === "") {</span>
-<span class="cstat-no" title="statement not covered" >      field === "name"</span>
-<span class="cstat-no" title="statement not covered" >        ? setSuburbError(`Suburb is missing.`)</span>
-<span class="cstat-no" title="statement not covered" >        : setStateError(`State is missing.`);</span>
-<span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >      // Reset errors if input is valid</span>
-<span class="cstat-no" title="statement not covered" >      field === "name" ? setSuburbError(null) : setStateError(null);</span>
+<span class="cstat-no" title="statement not covered" >    if (field === "name") {</span>
+<span class="cstat-no" title="statement not covered" >      if (inputValue === "") {</span>
+<span class="cstat-no" title="statement not covered" >        setSuburbError(`Suburb is missing.`);</span>
+<span class="cstat-no" title="statement not covered" >      } else {</span>
+<span class="cstat-no" title="statement not covered" >        setSuburbError(null);</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >      setSuburb(inputValue);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const handleSubmit = (e: React.FormEvent&lt;HTMLFormElement&gt;) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const handleSubmit = (e: FormEvent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >    const form = e.currentTarget;</span>
-<span class="cstat-no" title="statement not covered" >    const name = new FormData(form).get("name") as string;</span>
-<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const name = suburb;</span>
 <span class="cstat-no" title="statement not covered" >    const state = convertStateTypeToString(selectedState);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // submit when there are no errors</span>
-<span class="cstat-no" title="statement not covered" >    if (name &amp;&amp; !suburbError &amp;&amp; state) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!selectedState) setStateError(`State is missing.`);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (name &amp;&amp; selectedState) {</span>
 <span class="cstat-no" title="statement not covered" >      onSubmit(name, state);</span>
-<span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >      setSuburbError(`Suburb is missing.`);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -389,6 +387,7 @@
 <span class="cstat-no" title="statement not covered" >              value={selectedState}</span>
 <span class="cstat-no" title="statement not covered" >              onChange={(_event, newValue) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >                setSelectedState(newValue);</span>
+<span class="cstat-no" title="statement not covered" >                setStateError(null);</span>
 <span class="cstat-no" title="statement not covered" >              }}</span>
 <span class="cstat-no" title="statement not covered" >              getOptionLabel={(option) =&gt; `${option.state}`}</span>
 <span class="cstat-no" title="statement not covered" >              renderInput={(params) =&gt; (</span>
@@ -399,6 +398,7 @@
 <span class="cstat-no" title="statement not covered" >                  size="small"</span>
 <span class="cstat-no" title="statement not covered" >                  margin="dense"</span>
 <span class="cstat-no" title="statement not covered" >                  label="States"</span>
+<span class="cstat-no" title="statement not covered" >                  error={!!stateError}</span>
 <span class="cstat-no" title="statement not covered" >                  helperText={stateError || ""}</span>
 <span class="cstat-no" title="statement not covered" >                /&gt;</span>
 <span class="cstat-no" title="statement not covered" >              )}</span>
@@ -427,7 +427,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-29T13:25:07.190Z
+                at 2024-06-30T04:22:55.186Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -1,21 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import {
-  UserForm,
-  UserResponse,
-} from "../../services/api-responses.interfaces";
+import { UserForm } from "../../services/api-responses.interfaces";
 import { Box, Skeleton, Snackbar, Alert } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../context/userContextProvider";
 import CreateUserForm from "../../components/CreateUserForm/CreateUserForm";
+import { registerUser } from "../../services/user-services";
 
 interface CreateNewUserPageProps {
-  mode: string;
+  mode: "Create" | "Edit";
 }
 
 const CreateNewUserPage = ({ mode }: CreateNewUserPageProps) => {
   const navigate = useNavigate();
-  const [user, setUSer] = useState<UserResponse | null>(null);
+  const { setUser } = useContext(UserContext);
   const [error, setError] = useState<string | null>(null);
-  const [fetchStatus, setFetchStatus] = useState<string>("LOADING");
+  const [fetchStatus, setFetchStatus] = useState<string>("SUCCESS");
+  // TASK: change this to loading when adding edit user functionality
   const [open, setOpen] = useState(false);
 
   const handleClose = (
@@ -31,21 +31,23 @@ const CreateNewUserPage = ({ mode }: CreateNewUserPageProps) => {
 
   const onSubmit = (user: UserForm) => {
     console.log(user);
-    // createUser(user)
-    //   .then(() => {
-    //     navigate("/");
-    //     setError(null);
-    //   })
-    //   .catch((e: Error) => {
-    //     setError(e.message);
-    //     setOpen(true);
-    //     console.error("ERROR: " + e);
-    //   });
+    registerUser(user)
+      .then((data) => {
+        setFetchStatus("SUCCESS");
+        setUser(data);
+        navigate("/");
+        setError(null);
+      })
+      .catch((e: Error) => {
+        setError(e.message);
+        setOpen(true);
+        console.error("ERROR: " + e);
+      });
   };
 
   return (
     <Box width="100%">
-      {/* {fetchStatus === "LOADING" && (
+      {fetchStatus === "LOADING" && (
         <>
           <Box
             display="flex"
@@ -74,11 +76,11 @@ const CreateNewUserPage = ({ mode }: CreateNewUserPageProps) => {
           </Alert>
         </Snackbar>
       )}
-      {fetchStatus === "SUCCESS" && ( */}
-      <>
-        <CreateUserForm onSubmit={onSubmit} mode="Create" />
-      </>
-      {/* )} */}
+      {fetchStatus === "SUCCESS" && (
+        <>
+          <CreateUserForm onSubmit={onSubmit} mode={mode} />
+        </>
+      )}
     </Box>
   );
 };
