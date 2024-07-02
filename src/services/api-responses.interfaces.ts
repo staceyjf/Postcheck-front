@@ -1,19 +1,28 @@
-export interface PostCodeResponse {
-  id: number;
-  postcode: string;
-  associatedSuburbs: SuburbResponse[];
-}
-
 export interface PostCodeForm {
+  associatedSuburbs?: SuburbResponse[];
   id?: number;
   postcode?: string;
-  associatedSuburbs?: SuburbResponse[];
 }
 
-export interface SuburbResponse {
+export interface PostCodeResponse {
+  associatedSuburbs: SuburbResponse[];
   id: number;
-  name: string;
-  state: string;
+  postcode: string;
+}
+
+interface DataPoint {
+  x: number;
+  y: Date;
+}
+
+interface StateDataPoint {
+  color: string;
+  data: DataPoint[];
+  id: string;
+}
+
+export interface ReportingResponse {
+  data: StateDataPoint[];
 }
 
 export interface SuburbForm {
@@ -22,14 +31,20 @@ export interface SuburbForm {
   state?: string;
 }
 
-export interface UserResponse {
-  username: string;
-  password?: string;
-  email?: string;
+export interface SuburbResponse {
+  id: number;
+  name: string;
+  state: string;
 }
 
 export interface UserForm {
-  username: string;
-  password?: string;
   email?: string;
+  password?: string;
+  username: string;
+}
+
+export interface UserResponse {
+  email?: string;
+  password?: string;
+  username: string;
 }

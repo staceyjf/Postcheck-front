@@ -12,6 +12,7 @@ import CreateUpdateSuburbsPage from "./pages/CreateUpdateSuburbsPage/CreateUpdat
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useContext } from "react";
 import CreateNewUserPage from "./pages/CreateNewUserPage/CreateNewUserPage";
+import ReportingPage from "./pages/ReportingPage/ReportingPage";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -93,6 +94,7 @@ function App() {
                         path="/register"
                         element={<CreateNewUserPage mode="Create" />}
                       />
+                      <Route path="/reporting" element={<ReportingPage />} />
                     </>
                   )}
                   <Route path="*" element={<NotFoundPage />} />

@@ -96,6 +96,11 @@ const Navbar = () => {
                 onClick: () => handleMenuItm("/register"),
                 testId: "add-user-item",
               },
+              {
+                text: "Reporting",
+                onClick: () => handleMenuItm("/reporting"),
+                testId: "reporting-item",
+              },
               { text: "Logout", onClick: signOut },
             ].map((item, index) => (
               <MenuItem key={index} onClick={item.onClick}>
