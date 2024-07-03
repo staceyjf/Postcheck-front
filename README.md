@@ -1,14 +1,14 @@
-# Welcome to PostChecker-API-Front 
+# Welcome to PostChecker-API-Front
 
 The front end demo for my PostChecker-API backend in Springboot and/or Flask.
 
 Deployed at: https://www.staceyfanner.com/Postcheck-front/
 
-NOTE: This is currently being powered by my springboot API.
+NOTE: This is currently being powered by a local Flask backend which I am currently looking at deploying. Watch this space for further developments.
 
 Please use the following user details to log in:
 username: admin
-password: admin
+password: admin1234
 
 <div align="center">
   <img src="./public/postcheckAPI.gif" alt="Homepage">
@@ -57,31 +57,42 @@ Given the fictional brief, I used the existing Aus-post Postcode checker as my d
 
 ## Key Learning Highlights
 
-1. **Managing Auth:** The journey of understanding how authentication is implemented and how to store tokens in local storage so that they could be utilized in the header for HTTP requests. 
+1. **Managing Auth:** The journey of understanding how authentication is implemented and how to store tokens in local storage so that they could be utilized in the header for HTTP requests.
+2. **Nivo Chart Library:** Implementing Nivo line chart for an interactive reporting experience.
 
 ## To-Dos
 
 1. **Increased functionality:** Build out more frontend functionality like adding a new user form and additional suburb CRUD functionality to be able to update and delete suburbs.
 
-## Changelog  
+## Changelog
+
 Date: 25/06/24
 
-Updates: 
+Updates:
 
-1. Structure: Separated the front end app from SpringTasker repo.
+1. Structure: Separated the front end app from PostCheck repo.
 
 Date: 27/06/24
 
-Updates: 
+Updates:
 
-1. Deployment: Successful deployed with GH pages.
+1. Deployment: Successfully deployed with GH pages.
 2. Linting: Amends to adhere to configured linting rules.
+
+Date: 03/0/24
+
+Updates:
+
+1. 404 Page: Successfully added a 404 Page for better UX
+2. Reporting Page: Added Property Reporting dashboard as a way to play around with Nivo charts
+3. Auth: Corrected auth so routes are protected via the routes in addition to conditionally rendering elements based on signed in status
+4. UX: Improved the error handling by removing the background that was being displayed with error toasts
 
 ## Screenshots
 
-| New Form                              | Update Form                          | Testing - Front                         |
-| ------------------------------------- | ------------------------------------ | --------------------------------------- |
-| <img src="./public/newform.png"  />   | <img src="./public/updateform.png"  /> | <img src="./public/test.png"  /> |
+| New Form                            | Update Form                            | Testing - Front                  |
+| ----------------------------------- | -------------------------------------- | -------------------------------- |
+| <img src="./public/newform.png"  /> | <img src="./public/updateform.png"  /> | <img src="./public/test.png"  /> |
 
 ## Technologies Used
 
@@ -93,6 +104,6 @@ Updates:
 ![CSS3](https://img.shields.io/badge/-CSS3-05122A?style=flat&logo=css3)  
 ![TypeScript](https://img.shields.io/badge/-TypeScript-05122A?style=flat&logo=typescript)  
 ![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)  
-![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)  
+![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
 
 </div>
