@@ -10,21 +10,6 @@ export interface PostCodeResponse {
   postcode: string;
 }
 
-interface DataPoint {
-  x: number;
-  y: Date;
-}
-
-interface StateDataPoint {
-  color: string;
-  data: DataPoint[];
-  id: string;
-}
-
-export interface ReportingResponse {
-  data: StateDataPoint[];
-}
-
 export interface SuburbForm {
   id?: number;
   name?: string;

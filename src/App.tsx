@@ -38,7 +38,7 @@ function App() {
           }}
         >
           <Box
-            height="25vh"
+            height="45vh"
             width="100%"
             sx={{
               position: "absolute",
@@ -48,7 +48,7 @@ function App() {
             }}
           />
           <Container
-            maxWidth="md"
+            maxWidth="lg"
             sx={{
               position: "relative",
               zIndex: 2,

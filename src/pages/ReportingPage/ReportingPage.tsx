@@ -3,13 +3,13 @@ import styles from "./ReportingPage.module.scss";
 import { Alert, Box, Skeleton, Snackbar } from "@mui/material";
 import LineChart from "../../components/LineChart/LineChart";
 import { getPropertyPricingByState } from "../../services/reporting-services";
-import { ReportingResponse } from "../../services/api-responses.interfaces";
+import { Serie } from "@nivo/line";
 
 const ReportingPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [fetchStatus, setFetchStatus] = useState<string>("LOADING");
   const [open, setOpen] = useState(false);
-  const [data, setdata] = useState<ReportingResponse[]>([]);
+  const [chartData, setChartData] = useState<Serie[]>([]);
 
   useEffect(() => {
     document.title = "PostCheck - interesting information of property";
@@ -17,7 +17,10 @@ const ReportingPage = () => {
     getPropertyPricingByState()
       .then((chartData) => {
         setFetchStatus("SUCCESS");
-        setdata(chartData);
+        const data: Serie[] = chartData;
+        if (data) {
+          setChartData(data);
+        }
       })
       .catch((e: Error) =>
         setError(
@@ -43,7 +46,7 @@ const ReportingPage = () => {
   };
 
   return (
-    <Box width="100%">
+    <Box width="1000px" p={0}>
       {fetchStatus === "LOADING" && (
         <>
           <Box
@@ -74,12 +77,10 @@ const ReportingPage = () => {
         </Snackbar>
       )}
       {fetchStatus === "SUCCESS" && (
-        <Box height="100%">
-          <div className={styles.ReportingPage}>
-            <h1>Property by state across time</h1>
-            <LineChart data={data} />
-          </div>
-        </Box>
+        <div className={styles.ReportingPage}>
+          <h1>Average property price by state across time</h1>
+          <LineChart chartData={chartData} />
+        </div>
       )}
     </Box>
   );
