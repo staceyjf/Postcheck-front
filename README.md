@@ -39,7 +39,7 @@ This is the demo front end to showcase some of the functionalities.
 
 ## Planning
 
-## Design Inspiration
+### Design Inspiration
 
 Given the fictional brief, I used the existing Aus-post Postcode checker as my design inspiration.
 
@@ -62,7 +62,8 @@ Given the fictional brief, I used the existing Aus-post Postcode checker as my d
 
 ## To-Dos
 
-1. **Increased functionality:** Build out more frontend functionality like adding a new user form and additional suburb CRUD functionality to be able to update and delete suburbs.
+1. **Increased functionality:** Build out more frontend functionality like additional suburb CRUD functionality to be able to update and delete suburbs.
+2. **JWT implementation:** Looking at checking to see if there is a valid JWT in local storage which will solve the refresh issue.
 
 ## Changelog
 
@@ -87,6 +88,7 @@ Updates:
 2. Reporting Page: Added Property Reporting dashboard as a way to play around with Nivo charts
 3. Auth: Corrected auth so routes are protected via the routes in addition to conditionally rendering elements based on signed in status
 4. UX: Improved the error handling by removing the background that was being displayed with error toasts
+5. New User: New user functionality add
 
 ## Screenshots
 
