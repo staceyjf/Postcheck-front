@@ -18,6 +18,10 @@ interface CreateUpdateFormProps {
   onSubmit: (postcode: string, suburbIds: number[]) => void;
 }
 
+function capitalize(str: string) {
+  return str.replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 const CreateUpdateForm = ({
   defaultValues,
   suburbs,
@@ -93,7 +97,9 @@ const CreateUpdateForm = ({
               onChange={(_event, newValue) => {
                 setSelectedSuburbs(newValue);
               }}
-              getOptionLabel={(option) => `${option.name}, ${option.state}`}
+              getOptionLabel={(option) =>
+                `${capitalize(option.name)}, ${option.state}`
+              }
               renderInput={(params) => (
                 <TextField
                   {...params}
