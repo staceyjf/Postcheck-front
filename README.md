@@ -63,7 +63,7 @@ Given the fictional brief, I used the existing Aus-post Postcode checker as my d
 ## To-Dos
 
 1. **Increased functionality:** Build out more frontend functionality like additional suburb CRUD functionality to be able to update and delete suburbs.
-2. **JWT implementation:** Looking at checking to see if there is a valid JWT in local storage which will solve the refresh issue.
+2. **JWT implementation:** Change my approach to using 'user' state to protect the routes which means users have to resign in when the page is refreshed.
 
 ## Changelog
 
