@@ -5,6 +5,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { UserContext } from "../../context/userContextProvider";
 import ListItem from "./ListItm";
 import theme from "../../styling/theme";
+import { vi } from "vitest";
 
 describe("ListItem", () => {
   const deleteOnClick = vi.fn((id) => console.log(id));
@@ -43,11 +44,12 @@ describe("ListItem", () => {
   });
 
   it("should call deleteOnClick with the right id value, multiple times with a signed in user", async () => {
+   
     render(
       <MemoryRouter initialEntries={["/"]}>
         <ThemeProvider theme={theme}>
           <UserContext.Provider
-            value={{ user: mockUser, signOut: mockSignOut }}
+            value={{ user: mockUser, signOut: mockSignOut, isAuthenticated: true }}
           >
             <ListItem
               id={5}
@@ -61,6 +63,8 @@ describe("ListItem", () => {
         </ThemeProvider>
       </MemoryRouter>
     );
+
+    useAuth: vi.fn(() => ({ isAuthenticated: true }))
 
     const btn = screen.getByLabelText("delete");
     await userEvent.click(btn);
@@ -76,7 +80,7 @@ describe("ListItem", () => {
       <MemoryRouter initialEntries={["/"]}>
         <ThemeProvider theme={theme}>
           <UserContext.Provider
-            value={{ user: mockUser, signOut: mockSignOut }}
+            value={{ user: mockUser, signOut: mockSignOut, isAuthenticated: true }}
           >
             <ListItem
               id={5}

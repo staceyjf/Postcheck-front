@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { UserResponse } from "../services/api-responses.interfaces";
 import { signIn } from "../services/user-services";
 import { getToken } from "../services/utils";
@@ -89,9 +89,3 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
 };
 
 export default UserContextProvider;
-
-// custom hook for Auth
-export const useAuth = () => {
-  const { isAuthenticated } = useContext(UserContext);
-  return isAuthenticated;
-};

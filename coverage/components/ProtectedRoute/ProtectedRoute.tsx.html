@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/CreateUpdateSuburbsForm/AusStates.ts</title>
+    <title>Code coverage report for components/ProtectedRoute/ProtectedRoute.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/CreateUpdateSuburbsForm</a> AusStates.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/ProtectedRoute</a> ProtectedRoute.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/21</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/21</span>
             </div>
         
             
@@ -84,11 +84,7 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -109,34 +105,26 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >export interface StateType {<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >  state: string;</span>
-<span class="cstat-no" title="statement not covered" >  suggested?: boolean;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useNavigate } from "react-router-dom";</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { useAuth } from "../../hooks/useAuth";</span>
+<span class="cstat-no" title="statement not covered" >import { useEffect } from "react";</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export const states: readonly StateType[] = [</span>
-<span class="cstat-no" title="statement not covered" >  { state: "NSW" },</span>
-<span class="cstat-no" title="statement not covered" >  { state: "QLD" },</span>
-<span class="cstat-no" title="statement not covered" >  { state: "SA" },</span>
-<span class="cstat-no" title="statement not covered" >  { state: "TAS" },</span>
-<span class="cstat-no" title="statement not covered" >  { state: "VIC" },</span>
-<span class="cstat-no" title="statement not covered" >  { state: "WA" },</span>
-<span class="cstat-no" title="statement not covered" >  { state: "ACT" },</span>
-<span class="cstat-no" title="statement not covered" >  { state: "NT" },</span>
-<span class="cstat-no" title="statement not covered" >];</span>
+<span class="cstat-no" title="statement not covered" >type ProtectedRouteProps = {</span>
+<span class="cstat-no" title="statement not covered" >  children: React.ReactNode;</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >// helper functions to manage type safety</span>
-<span class="cstat-no" title="statement not covered" >export const convertStateTypeToString = (</span>
-<span class="cstat-no" title="statement not covered" >  stateType: StateType | null</span>
-<span class="cstat-no" title="statement not covered" >): string =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  if (stateType === null) {</span>
-<span class="cstat-no" title="statement not covered" >    return "";</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  return stateType.state;</span>
+<span class="cstat-no" title="statement not covered" >export const ProtectedRoute: React.FC&lt;ProtectedRouteProps&gt; = ({ children }) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const isAuthenticated = useAuth();</span>
+<span class="cstat-no" title="statement not covered" >  const navigate = useNavigate();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  // navigate back to the home page without edit and delete</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if (!isAuthenticated) {</span>
+<span class="cstat-no" title="statement not covered" >      navigate("/");</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, [isAuthenticated]);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return children;</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;</pre></td></tr></table></pre>
 

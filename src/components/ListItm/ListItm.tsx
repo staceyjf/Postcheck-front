@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import { Box, IconButton, useTheme, TableCell } from "@mui/material";
 import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
-import { useAuth, UserContext } from "../../context/userContextProvider";
+import { useAuth } from "../../hooks/useAuth";
 
 // define the props
 interface ListItmProps {
