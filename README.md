@@ -2,7 +2,7 @@
 
 The front end demo for my PostChecker-API backend in Springboot and/or Flask.
 
-Deployed at: https://www.staceyfanner.com/Postcheck/
+Deployed at: https://www.staceyfanner.com/Postcheck-front/
 
 NOTE: This is currently being powered by a local Flask backend which I am currently looking at deploying. Watch this space for further developments.
 
