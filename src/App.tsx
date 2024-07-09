@@ -62,7 +62,7 @@ function App() {
                 padding: 2,
               }}
             >
-              <BrowserRouter basename="/Postcheck">
+              <BrowserRouter basename="/Postcheck-front">
                 <Navbar />
                 <Box
                   flexGrow={1}
