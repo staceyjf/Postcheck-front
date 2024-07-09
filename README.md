@@ -90,6 +90,13 @@ Updates:
 4. UX: Improved the error handling by removing the background that was being displayed with error toasts
 5. New User: New user functionality add
 
+Date: 09/0/24
+
+Updates:
+
+1. Protected Route component: For improved security on routes, I have added a protected route container which wraps each wrap that required authentication. If authentication is not valid, the user is redirected to the home page.
+2. useAuth custom hook: Added a useAuth hook which uses the isAuthenticated state in the user Context to conditionally render secure elements.
+
 ## Screenshots
 
 | New Form                            | Update Form                            | Testing - Front                  |
