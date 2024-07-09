@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Box, IconButton, useTheme, TableCell } from "@mui/material";
 import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
-import { UserContext } from "../../context/userContextProvider";
+import { useAuth, UserContext } from "../../context/userContextProvider";
 
 // define the props
 interface ListItmProps {
@@ -22,7 +22,7 @@ const ListItm = ({
   handleEdit,
 }: ListItmProps) => {
   const theme = useTheme();
-  const { user } = useContext(UserContext);
+  const isAuthenticated = useAuth();
 
   return (
     <>
@@ -33,7 +33,7 @@ const ListItm = ({
         {suburbState !== "" ? `${suburbName}, ${suburbState}` : `${suburbName}`}
       </TableCell>
       <TableCell>
-        {user && (
+        {isAuthenticated && (
           <Box
             display="flex"
             flexDirection="row"

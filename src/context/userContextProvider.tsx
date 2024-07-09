@@ -1,9 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import { UserResponse } from "../services/api-responses.interfaces";
 import { signIn } from "../services/user-services";
+import { getToken } from "../services/utils";
 
 interface UserContext {
   user: UserResponse | null;
+  isAuthenticated: boolean;
   setUser: (user: UserResponse | null) => void;
   userSignIn: (username: string, password: string) => Promise<void>;
   signOut: () => void;
@@ -12,6 +14,7 @@ interface UserContext {
 // default is provided when the context is consumed without a provider
 const defaults: UserContext = {
   user: null,
+  isAuthenticated: false,
   setUser: () => {
     throw new Error("setUser must be used within a UserContextProvider");
   },
@@ -32,6 +35,15 @@ interface UserContextProviderProps {
 
 const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [user, setUser] = useState<UserResponse | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  // prevents the user having to resign in if refreshed
+  useEffect(() => {
+    const userToken = getToken();
+    if (userToken) {
+      setIsAuthenticated(true);
+    }
+  }, [isAuthenticated]);
 
   const userSignIn = async (username: string, password: string) => {
     try {
@@ -43,6 +55,7 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
           "There was an issue with signing in. Please try again."
         );
       }
+      setIsAuthenticated(true);
       localStorage.setItem("token", token);
       const signedInUser: UserResponse = {
         username: username,
@@ -56,6 +69,7 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
 
   const signOut = () => {
     localStorage.removeItem("token");
+    setIsAuthenticated(false);
     setUser(null);
   };
 
@@ -63,6 +77,7 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
     <UserContext.Provider
       value={{
         user,
+        isAuthenticated,
         setUser,
         userSignIn,
         signOut,
@@ -74,3 +89,9 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
 };
 
 export default UserContextProvider;
+
+// custom hook for Auth
+export const useAuth = () => {
+  const { isAuthenticated } = useContext(UserContext);
+  return isAuthenticated;
+};

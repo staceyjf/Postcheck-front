@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, useTheme, IconButton, Menu, MenuItem } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { UserContext } from "../../context/userContextProvider";
+import { UserContext, useAuth } from "../../context/userContextProvider";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import logo from "../../assets/post.png";
 import LoginContainer from "../../containers/LoginContainer/LoginContainer";
@@ -10,7 +10,8 @@ import LoginContainer from "../../containers/LoginContainer/LoginContainer";
 const Navbar = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { user, signOut } = useContext(UserContext);
+  const { signOut } = useContext(UserContext);
+  const isAuthenticated = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -69,12 +70,12 @@ const Navbar = () => {
           onClose={handleClose}
           data-testid="menu"
         >
-          {!user && (
+          {!isAuthenticated && (
             <MenuItem disableRipple data-testid="login-form">
               <LoginContainer />
             </MenuItem>
           )}
-          {user &&
+          {isAuthenticated &&
             [
               {
                 text: "Home",
