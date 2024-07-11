@@ -4,8 +4,6 @@ The front end demo for my PostChecker-API backend in Springboot and/or Flask.
 
 Deployed at: https://www.staceyfanner.com/Postcheck-front/
 
-NOTE: This is currently being powered by a local Flask backend which I am currently looking at deploying. Watch this space for further developments.
-
 Please use the following user details to log in:
 username: admin
 password: admin1234
@@ -97,6 +95,12 @@ Updates:
 1. Protected Route component: For improved security on routes, I have added a protected route container which wraps each wrap that required authentication. If authentication is not valid, the user is redirected to the home page.
 2. useAuth custom hook: Added a useAuth hook which uses the isAuthenticated state in the user Context to conditionally render secure elements.
 3. Tests: Updated to use the isAuthenticated state for conditionally rendering elements.
+
+Date: 09/0/24
+
+Updates:
+
+1. Server deployment: Updated to deployed backend url
 
 ## Screenshots
 
