@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  VITE_API_BASE_URL: https://server.staceyfanner.com/api/v1
+  VITE_API_BASE_URL: https://postcheck-dgd3apheh6bdf0cw.australiaeast-01.azurewebsites.net/api/v1
 
 jobs:
   deploy:
