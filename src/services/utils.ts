@@ -3,7 +3,7 @@ export const getToken = (): string | null => {
   if (!token) return null;
   // Obtain the payload of the token
   const payload = JSON.parse(atob(token.split(".")[1]));
-  // A JWT's exp is expressed in seconds, not milliseconds, so convert
+  // The exp claim is expressed in seconds, not milliseconds, so convert
   // checks if the token has expired
   if (payload.ex * 1000 < Date.now()) {
     // Token has expired - remove it from localStorage

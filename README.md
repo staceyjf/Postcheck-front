@@ -1,12 +1,18 @@
 # Welcome to PostChecker-API-Front
 
-The front end demo for my PostChecker-API backend in Springboot and/or Flask.
+The frontend demo for my PostChecker-API backend in Flask and/or SpringBoot.
+
+Currently the frontend is attached to the Flask backend which supports the additional reporting functionality.
 
 Deployed at: https://www.staceyfanner.com/Postcheck-front/
 
 Please use the following user details to log in:
+
 username: admin
+
 password: admin1234
+
+_Please note that I am using the free tier of Azure Web app so it can take a while to load_
 
 <div align="center">
   <img src="./public/postcheckAPI.gif" alt="Homepage">
@@ -14,10 +20,13 @@ password: admin1234
 
 ## Build Steps
 
+```bash
 1. Clone the repo.
-2. Run `npm install` to install the relevant dependencies.
+2. Cd into `PostCheck-front` folder
+3. Run `npm install` to install the relevant dependencies.
 3. Run `npm run dev`.
 4. Test with `npm run test`.
+```
 
 ## About
 
@@ -32,8 +41,6 @@ The MVP to deliver on this client brief was:
 - A secured API to add new suburb and postcode combinations.
 - Some form of persistence (a database).
 - Testing for service layers.
-
-This is the demo front end to showcase some of the functionalities.
 
 ## Planning
 
@@ -50,18 +57,20 @@ Given the fictional brief, I used the existing Aus-post Postcode checker as my d
 ### Frontend
 
 1. **Full CRUD for Postcodes:** Users are able to create, read, update, and delete new postcodes.
-2. **Login and Auth:** Users are able to log in to access restricted areas such as creating, updating, and deleting postcodes.
+2. **Authentication:** Users are able to log in to access restricted areas such as creating, updating, and deleting postcodes.
 3. **Component Testing:** Components have a range of tests to ensure elements render as expected.
+4. **Chart Visuals:** Interactive chart for user's to explore the average property price by state across time,
 
 ## Key Learning Highlights
 
-1. **Managing Auth:** The journey of understanding how authentication is implemented and how to store tokens in local storage so that they could be utilized in the header for HTTP requests.
-2. **Nivo Chart Library:** Implementing Nivo line chart for an interactive reporting experience.
+1. **Managing Authentication:**  I explored how authentication is implemented and how to store tokens in local storage for use in HTTP request headers. I created a user context that utilized a `signin HTTP POST request` to obtain the token. Once received, the token was saved as a key/value pair in the user's local storage. The token was later retrieved from local storage and attached to the Authorization header for requests requiring authentication, such as creating a new postcode.
+2. **Nivo Chart Library for chart visuals:** : I implemented Nivo's line chart for an interactive reporting experience. Despite having good documentation for customizing the UX, TypeScript support was limited, which made understanding type requirements challenging. I also had to adjust my TypeScript settings to accommodate the any type. Additionally, wrangling the data on the backend into the required format was a challenge. Since I usually develop from backend to frontend, this was a valuable experience in considering frontend data requirements during the planning phase of development.
+3. **Securing Routes:** To protect routes, I added a `ProtectedRoute` component that wraps around UX components. After signing in and receiving a JWT from the backend, the `isAuthenticated` state is set to true. When navigating throughout the app, this state is checked in the ProtectedRoute component. If the criteria are met (e.g., `isAuthenticated`), the relevant component is rendered. Otherwise, the user is redirected to the homepage and cannot access secure areas, such as the reporting chart.
 
 ## To-Dos
 
 1. **Increased functionality:** Build out more frontend functionality like additional suburb CRUD functionality to be able to update and delete suburbs.
-2. **JWT implementation:** Change my approach to using 'user' state to protect the routes which means users have to resign in when the page is refreshed.
+2. **Increased Testing coverage:** Continue to build out testing to increase test coverage in things like the newer chart functionality.
 
 ## Changelog
 

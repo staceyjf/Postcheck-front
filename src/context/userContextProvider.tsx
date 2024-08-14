@@ -55,8 +55,8 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
           "There was an issue with signing in. Please try again."
         );
       }
-      setIsAuthenticated(true);
       localStorage.setItem("token", token);
+      setIsAuthenticated(true);
       const signedInUser: UserResponse = {
         username: username,
       };
